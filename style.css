@@ -1,0 +1,50 @@
+
+body {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  background-color: #fefaf6;
+  color: #2c2c2c;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #0b3c5d;
+  color: white;
+  text-align: center;
+  padding: 25px 10px;
+}
+nav {
+  background-color: #d9b08c;
+  padding: 12px;
+  text-align: center;
+}
+nav a {
+  color: #222;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover {
+  color: #0b3c5d;
+}
+section {
+  padding: 25px;
+  max-width: 850px;
+  margin: auto;
+}
+footer {
+  background-color: #0b3c5d;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+}
+.pdf-links a {
+  display: block;
+  margin: 10px 0;
+  color: #145374;
+  text-decoration: underline;
+}
+.pdf-links a:hover {
+  color: #00334e;
+}
