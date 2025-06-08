@@ -48,3 +48,54 @@ footer {
 .pdf-links a:hover {
   color: #00334e;
 }
+├── style.css
+body {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  background-color: #f9f9f9;
+  color: #333;
+  text-align: right;
+  direction: rtl;
+  padding: 20px;
+  margin: 0;
+}
+
+header {
+  background-color: #003366;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+nav {
+  margin: 20px 0;
+  background: #eeeeee;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+nav a {
+  margin: 0 10px;
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h2 {
+  color: #003366;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #777;
+}
+
+└── script.js
+// مستقبل میں اگر JavaScript کی ضرورت ہو تو یہاں لکھیں
+console.log("Noori Darul Qazaat section loaded.");
