@@ -1,101 +1,12 @@
-
 body {
-  font-family: 'Noto Nastaliq Urdu', serif;
-  background-color: #fefaf6;
-  color: #2c2c2c;
-  line-height: 1.8;
-  margin: 0;
-  padding: 0;
+    font-family: 'Noto Nastaliq Urdu', serif;
+    direction: rtl;
+    background-color: #f9f9f9;
+    color: #222;
+    padding: 20px;
 }
-header {
-  background-color: #0b3c5d;
-  color: white;
-  text-align: center;
-  padding: 25px 10px;
+input, button {
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 16px;
 }
-nav {
-  background-color: #d9b08c;
-  padding: 12px;
-  text-align: center;
-}
-nav a {
-  color: #222;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-}
-nav a:hover {
-  color: #0b3c5d;
-}
-section {
-  padding: 25px;
-  max-width: 850px;
-  margin: auto;
-}
-footer {
-  background-color: #0b3c5d;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 14px;
-}
-.pdf-links a {
-  display: block;
-  margin: 10px 0;
-  color: #145374;
-  text-decoration: underline;
-}
-.pdf-links a:hover {
-  color: #00334e;
-}
-├── style.css
-body {
-  font-family: 'Noto Nastaliq Urdu', serif;
-  background-color: #f9f9f9;
-  color: #333;
-  text-align: right;
-  direction: rtl;
-  padding: 20px;
-  margin: 0;
-}
-
-header {
-  background-color: #003366;
-  color: white;
-  padding: 20px;
-  border-radius: 12px;
-}
-
-nav {
-  margin: 20px 0;
-  background: #eeeeee;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-nav a {
-  margin: 0 10px;
-  color: #003366;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-main {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-h2 {
-  color: #003366;
-}
-
-footer {
-  text-align: center;
-  margin-top: 40px;
-  color: #777;
-}
-
-└── script.js
-// مستقبل میں اگر JavaScript کی ضرورت ہو تو یہاں لکھیں
-console.log("Noori Darul Qazaat section loaded.");

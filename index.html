@@ -1,124 +1,20 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>نوری دارالقضاءت، مدگل</title>
-  <style>
-    body {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #fefaf6;
-      color: #2c2c2c;
-      line-height: 1.8;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #0b3c5d;
-      color: white;
-      text-align: center;
-      padding: 25px 10px;
-    }
-    nav {
-      background-color: #d9b08c;
-      padding: 12px;
-      text-align: center;
-    }
-    nav a {
-      color: #222;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #0b3c5d;
-    }
-    section {
-      padding: 25px;
-      max-width: 850px;
-      margin: auto;
-    }
-    footer {
-      background-color: #0b3c5d;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-    }
-    .pdf-links a {
-      display: block;
-      margin: 10px 0;
-      color: #145374;
-      text-decoration: underline;
-    }
-    .pdf-links a:hover {
-      color: #00334e;
-    }
-    .fatawa-list a {
-      display: block;
-      margin: 6px 0;
-      color: #0b3c5d;
-      text-decoration: none;
-    }
-    .fatawa-list a:hover {
-      text-decoration: underline;
-      color: #d9b08c;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>نوری دارالقضاءت</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>نوری دارالقضاءت، مدگل</h1>
-    <p>اسلامی ششماہی مجلّہ و فتاویٰ جات کی اشاعت</p>
-  </header>
-
-  <nav>
-    <a href="#intro">تعارف</a>
-    <a href="#latest">تازہ شمارہ</a>
-    <a href="#fatawa">فتاویٰ</a>
-    <a href="#articles">مضامین</a>
-    <a href="#contact">رابطہ</a>
-  </nav>
-
-  <section id="intro">
-    <h2>تعارف</h2>
-    <p>
-      "نوری دارالقضاءت، مدگل" ایک روحانی و علمی کارخانہ ہے جو قضا، فقہ، اور اسلامی تعلیمات کے فروغ میں مصروفِ عمل ہے۔ اپنے ششماہی مجلّے "نفحات گلشن" کے ذریعے شرعی و اخلاقی رہنمائی فراہم کرتا ہے۔ اس ویب سائٹ کے ذریعے ہم تازہ شمارہ اور فتاویٰ جات پی ڈی ایف شکل میں فراہم کر رہے ہیں۔
-    </p>
-  </section>
-
-  <section id="latest">
-    <h2>تازہ شمارہ</h2>
-    <div class="pdf-links">
-      <a href="#">📥 رمضان المبارک 1446ھ - PDF ڈاؤنلوڈ کریں</a>
-    </div>
-  </section>
-
-  <section id="fatawa">
-    <h2>فتاویٰ</h2>
-    <div class="fatawa-list">
-      <a href="#">نماز کے مسائل</a>
-      <a href="#">روزے کے مسائل</a>
-      <a href="#">حج کے مسائل</a>
-      <a href="#">قربانی و عقیقہ</a>
-      <a href="#">دیگر مسائل</a>
-    </div>
-  </section>
-
-  <section id="articles">
-    <h2>مضامین</h2>
-    <p>جلد یہاں مضامین کا اضافہ کیا جائے گا۔</p>
-  </section>
-
-  <section id="contact">
-    <h2>رابطہ کریں</h2>
-    <p>📧 ای میل: info@nooridarulqazat.org</p>
-    <p>📱 ٹیلیگرام: <a href="https://t.me/nooridarulqazat">t.me/nooridarulqazat</a></p>
-    <p>🌐 ویب: www.nooridarulqazat.org</p>
-  </section>
-
-  <footer>
-    &copy; 2025 نوری دارالقضاءت، مدگل — جملہ حقوق محفوظ ہیں
-  </footer>
+    <h1>نکاح فارم</h1>
+    <form id="nikahForm">
+        <label>دلہا کا نام:</label><input type="text" name="groom"><br>
+        <label>دلہن کا نام:</label><input type="text" name="bride"><br>
+        <label>دلہا کا آدھار نمبر:</label><input type="text" name="groom_aadhar"><br>
+        <label>دلہن کا آدھار نمبر:</label><input type="text" name="bride_aadhar"><br>
+        <label>تاریخ نکاح:</label><input type="date" name="date"><br>
+        <button type="submit">محفوظ کریں</button>
+    </form>
+    <script src="script.js"></script>
 </body>
 </html>
