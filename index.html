@@ -216,52 +216,7 @@
 
   $1
 
-  <section>
-    <h2>📄 دولہا و دلہن کا خلاصہ</h2>
-    <p>درج ذیل معلومات کو مکمل کریں اور PDF حاصل کریں:</p>
-    <form style="display: grid; gap: 10px;" id="summaryForm" onsubmit="generateSummaryPDF(event)">
-      <label>دولہا کا نام:<input type="text" id="groomName" required /></label>
-      <label>دولہا کے والد کا نام:<input type="text" id="groomFather" required /></label>
-      <label>دلہن کا نام:<input type="text" id="brideName" required /></label>
-      <label>دلہن کے والد کا نام:<input type="text" id="brideFather" required /></label>
-      <label>تاریخ نکاح:<input type="date" id="nikahDate" required /></label>
-      <label>جائے نکاح:<input type="text" id="place" required /></label>
-      <label>سرپرست کا فون نمبر:<input type="tel" id="guardianPhone" required /></label>
-      <label>دولہا کا آدھار نمبر:<input type="text" id="groomAadhaar" required /></label>
-      <label>دلہن کا آدھار نمبر:<input type="text" id="brideAadhaar" required /></label>
-      <button class="btn-primary" type="submit">PDF تیار کریں</button>
-    </form>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script>
-      async function generateSummaryPDF(event) {
-        event.preventDefault();
-        const {{ jsPDF }} = window.jspdf;
-        const doc = new jsPDF();
-
-        const data = {
-          دولہا: document.getElementById('groomName').value,
-          "دولہا کے والد": document.getElementById('groomFather').value,
-          دلہن: document.getElementById('brideName').value,
-          "دلہن کے والد": document.getElementById('brideFather').value,
-          "تاریخ نکاح": document.getElementById('nikahDate').value,
-          "جائے نکاح": document.getElementById('place').value,
-          "سرپرست فون": document.getElementById('guardianPhone').value,
-          "دولہا آدھار": document.getElementById('groomAadhaar').value,
-          "دلہن آدھار": document.getElementById('brideAadhaar').value
-        };
-
-        doc.setFont('Helvetica');
-        doc.setFontSize(14);
-        let y = 20;
-        for (const key in data) {
-          doc.text(`${key}: ${data[key]}`, 20, y);
-          y += 10;
-        }
-        doc.save('nikah-summary.pdf');
-      }
-    </script>
-  </section>
+  
 
   <section style="background-color: #fdfdfd; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
     <p>
