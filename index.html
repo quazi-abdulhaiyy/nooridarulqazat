@@ -1,144 +1,146 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>محکمہ عالیہ شریعہ، دارالقصم مدگل</title>
-    <style>
-        /* --- بنیادی کلر ویریبلز (یہاں سے رنگ بدلیں) --- */
-        :root {
-            --primary-color: #1a237e; /* گہرا نیلا */
-            --secondary-color: #ffd700; /* سنہری */
-            --background-color: #f9f9f9;
-            --text-color: #222;
-            --button-hover-color: #3949ab;
-            --font-family-urdu: 'Noto Nastaliq Urdu', serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>محکمہ عالیہ شریعہ، دارالقصم مدگل</title>
+  <style>
+    @import url('https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css');
 
-        /* --- عام اسٹائلز --- */
-        @import url('https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css');
+    :root {
+      --background: #fefdf9;
+      --text: #3b3a30;
+      --heading: #6c4a3d;
+      --accent: #a67c52;
+      --accent-hover: #8d6e4d;
+      --card-bg: #fffdf8;
+      --shadow: rgba(0, 0, 0, 0.07);
+    }
 
-        body {
-            margin: 0;
-            font-family: var(--font-family-urdu);
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.7;
-        }
+    body {
+      margin: 0;
+      font-family: 'Noto Nastaliq Urdu', serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 2;
+    }
 
-        header {
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+    header {
+      background-color: var(--card-bg);
+      padding: 40px 20px 30px;
+      text-align: center;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.6rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+    header h1 {
+      color: var(--heading);
+      font-size: 2.6rem;
+      margin-bottom: 0.5rem;
+    }
 
-        header p {
-            margin-top: 8px;
-            font-size: 1.2rem;
-            font-weight: 500;
-            font-style: italic;
-        }
+    header p {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-top: 0;
+      font-style: italic;
+    }
 
-        main {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(26,35,126,0.15);
-        }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px var(--shadow);
+      padding: 30px 40px;
+    }
 
-        main section {
-            padding: 20px 30px;
-        }
+    section {
+      margin-bottom: 40px;
+    }
 
-        main section.intro p {
-            font-size: 1.25rem;
-            color: #333;
-            text-align: justify;
-            line-height: 2;
-        }
+    h2 {
+      color: var(--heading);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
 
-        .highlight {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
+    p {
+      font-size: 1.2rem;
+      text-align: justify;
+      margin-bottom: 20px;
+    }
 
-        .btn-primary {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            padding: 12px 30px;
-            margin: 20px 0;
-            font-size: 1.1rem;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-            font-weight: 600;
-        }
+    .btn-primary {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
 
-        .btn-primary:hover {
-            background-color: var(--button-hover-color);
-        }
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
 
-        footer {
-            text-align: center;
-            padding: 20px 10px;
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-            margin-top: 40px;
-            letter-spacing: 0.5px;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            main {
-                margin: 20px 10px;
-            }
-
-            main section.intro p {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
+    footer {
+      background-color: var(--card-bg);
+      text-align: center;
+      padding: 20px;
+      color: #8c7a6b;
+      font-size: 0.9rem;
+      border-top: 1px solid #eee;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <h1>محکمہ عالیہ شریعہ، دارالقصم مدگل</h1>
-    <p>دینِ محمدی ﷺ کی حقیقی ترجمانی کا معتبر مرکز</p>
+  <h1>محکمہ عالیہ شریعہ، دارالقصم مدگل</h1>
+  <p>دینِ محمدی ﷺ کی خالص ترجمانی کا معتبر مرکز</p>
 </header>
 
 <main>
-    <section class="intro">
-        <p>
-            یہ ویب سائٹ ایک <span class="highlight">علمی و اصلاحی پلیٹ فارم</span> ہے، جو امتِ مسلمہ کو دینِ اسلام کی خالص، مستند اور روشن تعلیمات پہنچانے کے لیے وقف ہے۔
-            یہاں آپ کو جلیل القدر اکابرین کی تابناک سوانح، شرعی مسائل کے دقیق اور معتبر فتاویٰ، فکری گہرائیوں سے معمور تحقیقی مضامین، اور دینی بصیرت سے مالامال مضامین میسر ہوں گے جو نہ صرف دل و دماغ کو منور کریں گے بلکہ عقیدہ و عمل میں استقامت و جِلو بھی پیدا کریں گے۔
-        </p>
-        <p>
-            <span class="highlight">مدگل کے معزز باشندگان کے لیے</span> ایک سہولت بخش آن لائن نظام فراہم کیا گیا ہے تاکہ نکاح نامہ اندراج شرعی اصولوں کے مطابق، آسان، محفوظ اور باوقار انداز میں کیا جا سکے۔
-        </p>
 
-        <a href="#" class="btn-primary">آن لائن نکاح نامہ اندراج</a>
-    </section>
+  <!-- تعارف -->
+  <section>
+    <p>
+      یہ ویب گاہ ایک علمی و اصلاحی پلیٹ فارم ہے، جو امتِ مسلمہ تک دینِ اسلام کی غیرمخلوط اور مستند تعلیمات کو عام کرنے کی مقدّس سعی ہے۔
+    </p>
+    <p>
+      یہاں آپ کو جلیل القدر اکابرین کی حیاتِ تابندہ، شرعی مسائل پر مبنی مستند فتاویٰ، فکری و تحقیقی مضامین، اور دینی بصیرت سے لبریز مقالات دستیاب ہوں گے — جو قلب و ذہن کو جِلا بخشیں گے اور عقیدہ و عمل میں استقامت عطا کریں گے۔
+    </p>
+  </section>
+
+  <!-- رسائل -->
+  <section>
+    <h2>علمی و دینی رسائل</h2>
+    <p>ادارے کی طرف سے شائع شدہ اصلاحی و فکری رسائل ملاحظہ کریں:</p>
+    <a href="pdfs/risalah-example.pdf" class="btn-primary" target="_blank">رسالہ ڈاؤنلوڈ کریں</a>
+  </section>
+
+  <!-- اکابرین -->
+  <section>
+    <h2>اکابرینِ امت کی سیرت</h2>
+    <p>بزرگانِ دین کی حیات و خدمات پر مشتمل مستند مواد یہاں دستیاب ہے:</p>
+    <a href="pdfs/buzurgan-example.pdf" class="btn-primary" target="_blank">سیرتِ اکابرین PDF</a>
+  </section>
+
+  <!-- نکاح -->
+  <section>
+    <h2>آن لائن نکاح نامہ اندراج</h2>
+    <p>شرعی اصولوں کے مطابق نکاح کی آن لائن رجسٹریشن کی سہولت یہاں فراہم کی گئی ہے:</p>
+    <a href="nikah/" class="btn-primary">نکاح فارم پر جائیں</a>
+  </section>
+
 </main>
 
 <footer>
-    &copy; 2025 محکمہ عالیہ شریعہ، دارالقصم مدگل | تمام حقوق محفوظ ہیں
+  &copy; 2025 محکمہ عالیہ شریعہ، دارالقصم مدگل | تمام حقوق محفوظ ہیں
 </footer>
 
 </body>
