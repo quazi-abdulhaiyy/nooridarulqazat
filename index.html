@@ -1,20 +1,89 @@
-<!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<!DOCTYPE html><html lang="ur" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>نوری دارالقضاءت</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نکاح نامہ اندراج</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      background-color: #f7f9fb;
+      color: #222;
+      margin: 0;
+      padding: 20px;
+      direction: rtl;
+      text-align: right;
+    }
+    header {
+      background: #004b6b;
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    p {
+      margin: 5px 0;
+    }
+    .form-section {
+      background: #ffffff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #004b6b;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h1>نکاح فارم</h1>
-    <form id="nikahForm">
-        <label>دلہا کا نام:</label><input type="text" name="groom"><br>
-        <label>دلہن کا نام:</label><input type="text" name="bride"><br>
-        <label>دلہا کا آدھار نمبر:</label><input type="text" name="groom_aadhar"><br>
-        <label>دلہن کا آدھار نمبر:</label><input type="text" name="bride_aadhar"><br>
-        <label>تاریخ نکاح:</label><input type="date" name="date"><br>
-        <button type="submit">محفوظ کریں</button>
-    </form>
-    <script src="script.js"></script>
+  <header>
+    <h1>نکاح نامہ اندراج</h1>
+    <p>فارم محکمہ عالیہ شرعیہ دارالقضاءت مدگل</p>
+  </header>  <section class="form-section">
+    <label>دلہا کا نام</label>
+    <input type="text" placeholder="مثال: محمد علی" /><label>دلہن کا نام</label>
+<input type="text" placeholder="مثال: فاطمہ بی بی" />
+
+<label>دلہا آدھار نمبر</label>
+<input type="text" placeholder="XXXX-XXXX-XXXX" />
+
+<label>دلہن آدھار نمبر</label>
+<input type="text" placeholder="XXXX-XXXX-XXXX" />
+
+<label>مہر کی رقم</label>
+<input type="text" placeholder="مثال: 50000" />
+
+<label>نکاح کی تاریخ</label>
+<input type="date" />
+
+<label>تصویر دلہا</label>
+<input type="file" accept="image/*" />
+
+<label>تصویر دلہن</label>
+<input type="file" accept="image/*" />
+
+<button>محفوظ کریں</button>
+
+  </section>
 </body>
 </html>
