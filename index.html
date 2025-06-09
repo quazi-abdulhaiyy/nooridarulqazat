@@ -219,7 +219,9 @@
   </section>
 
   <section>
-    <h2>📄 بنامِ زوجین</h2>
+  <h2>📄 بنامِ زوجین</h2>
+  <button class="btn-primary" onclick="toggleSummaryForm()">تفصیلات درج کریں</button>
+  <div id="summarySection" style="display: none; margin-top: 20px;">
     <p>مندرجہ ذیل معلومات پُر کریں اور پی ڈی ایف ڈاؤنلوڈ کریں:</p>
     <form style="display: grid; gap: 10px;" id="summaryForm" onsubmit="generateSummaryPDF(event)">
       <label>دولہا کا نام:<input type="text" id="groomName" required /></label>
@@ -231,37 +233,48 @@
       <label>سرپرست کا فون نمبر:<input type="tel" id="guardianPhone" required /></label>
       <label>دولہا کا آدھار نمبر:<input type="text" id="groomAadhaar" required /></label>
       <label>دلہن کا آدھار نمبر:<input type="text" id="brideAadhaar" required /></label>
+      <label>اینوِنٹر کا نام:<input type="text" id="inviterName" required /></label>
+      <label>اینوِنٹر کا فون نمبر:<input type="tel" id="inviterPhone" required /></label>
+      <label>قارئِ نکاح کا نام:<input type="text" id="qariName" required /></label>
+      <label>قارئِ نکاح کا فون نمبر:<input type="tel" id="qariPhone" required /></label>
       <button class="btn-primary" type="submit">PDF تیار کریں</button>
     </form>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script>
-      async function generateSummaryPDF(event) {
-        event.preventDefault();
-        const {{ jsPDF }} = window.jspdf;
-        const doc = new jsPDF();
-        const data = {
-          "دولہا کا نام": document.getElementById('groomName').value,
-          "دولہا کے والد کا نام": document.getElementById('groomFather').value,
-          "دلہن کا نام": document.getElementById('brideName').value,
-          "دلہن کے والد کا نام": document.getElementById('brideFather').value,
-          "تاریخ نکاح": document.getElementById('nikahDate').value,
-          "جائے نکاح": document.getElementById('place').value,
-          "سرپرست فون نمبر": document.getElementById('guardianPhone').value,
-          "دولہا آدھار نمبر": document.getElementById('groomAadhaar').value,
-          "دلہن آدھار نمبر": document.getElementById('brideAadhaar').value
-        };
-
-        doc.setFont('Helvetica');
-        doc.setFontSize(14);
-        let y = 20;
-        for (const key in data) {
-          doc.text(`${key}: ${data[key]}`, 20, y);
-          y += 10;
-        }
-        doc.save('banam-zawjain.pdf');
+  </div>
+  <script>
+    function toggleSummaryForm() {
+      const section = document.getElementById('summarySection');
+      section.style.display = section.style.display === 'none' ? 'block' : 'none';
+    }
+    async function generateSummaryPDF(event) {
+      event.preventDefault();
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const data = {
+        "دولہا کا نام": document.getElementById('groomName').value,
+        "دولہا کے والد کا نام": document.getElementById('groomFather').value,
+        "دلہن کا نام": document.getElementById('brideName').value,
+        "دلہن کے والد کا نام": document.getElementById('brideFather').value,
+        "تاریخ نکاح": document.getElementById('nikahDate').value,
+        "جائے نکاح": document.getElementById('place').value,
+        "سرپرست فون نمبر": document.getElementById('guardianPhone').value,
+        "دولہا آدھار نمبر": document.getElementById('groomAadhaar').value,
+        "دلہن آدھار نمبر": document.getElementById('brideAadhaar').value,
+        "اینوِنٹر کا نام": document.getElementById('inviterName').value,
+        "اینوِنٹر فون نمبر": document.getElementById('inviterPhone').value,
+        "قارئِ نکاح کا نام": document.getElementById('qariName').value,
+        "قارئِ نکاح فون نمبر": document.getElementById('qariPhone').value
+      };
+      doc.setFont('Helvetica');
+      doc.setFontSize(14);
+      let y = 20;
+      for (const key in data) {
+        doc.text(`${key}: ${data[key]}`, 20, y);
+        y += 10;
       }
-    </script>
-  </section>
+      doc.save('banam-zawjain.pdf');
+    }
+  </script>
+</section>
 
   
 
