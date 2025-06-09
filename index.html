@@ -99,6 +99,29 @@
       background-color: var(--accent-hover);
     }
 
+    .fatwa-list {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .fatwa-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .fatwa-list li {
+      margin-bottom: 10px;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
     footer {
       background-color: var(--card-bg);
       text-align: center;
@@ -109,9 +132,26 @@
       margin-top: 50px;
     }
   </style>
+  <script>
+    function toggleFatwaList() {
+      const list = document.getElementById('fatwaList');
+      list.style.display = list.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function filterFatwas() {
+      const input = document.getElementById('searchInput');
+      const filter = input.value.toLowerCase();
+      const list = document.getElementById('fatwaList');
+      const items = list.getElementsByTagName('li');
+      for (let i = 0; i < items.length; i++) {
+        const a = items[i].getElementsByTagName('a')[0];
+        const txtValue = a.textContent || a.innerText;
+        items[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+      }
+    }
+  </script>
 </head>
 <body>
-
 <header>
   <div class="banner">
     <h1 class="main-title">محکمہ عالیہ شریعہ، دارالقضاء مدگل</h1>
@@ -120,8 +160,6 @@
 </header>
 
 <main>
-
-  <!-- تعارف -->
   <section>
     <p>
       یہ ویب گاہ ایک علمی و اصلاحی پلیٹ فارم ہے، جو امتِ مسلمہ تک دینِ اسلام کی غیرمخلوط اور مستند تعلیمات کو عام کرنے کی مقدّس سعی ہے۔
@@ -131,32 +169,41 @@
     </p>
   </section>
 
-  <!-- رسائل -->
   <section>
     <h2>علمی و دینی رسائل</h2>
-    <p>دارالقضاء کی جانب سے شائع شدہ اصلاحی و فکری رسائل ملاحظہ کریں:</p>
+    <p>دارالقضاء کی جانب سے شائع شدہ اصلاحی، فکری اور تحقیقی رسائل ملاحظہ کریں:</p>
     <a href="pdfs/risalah-example.pdf" class="btn-primary" target="_blank">رسالہ ڈاؤنلوڈ کریں</a>
   </section>
 
-  <!-- اکابرین -->
   <section>
     <h2>اکابرینِ امت کی سیرت</h2>
     <p>بزرگانِ دین کی حیات و خدمات پر مشتمل مستند مواد یہاں دستیاب ہے:</p>
     <a href="nooridarulqazaat/pdfs/Sirat%20E%20huzoor%20Ashraful%20fuqaha.pdf" class="btn-primary" target="_blank">سیرتِ اکابرین PDF</a>
   </section>
 
-  <!-- نکاح -->
   <section>
     <h2>آن لائن نکاح نامہ اندراج</h2>
     <p>شرعی اصولوں کے مطابق نکاح کی آن لائن رجسٹریشن کی سہولت یہاں فراہم کی گئی ہے:</p>
     <a href="nikah/nama.html" class="btn-primary">نکاح فارم پر جائیں</a>
   </section>
 
+  <section>
+    <h2>فتاویٰ جات</h2>
+    <p>دارالقضاء کی جانب سے جاری کردہ اہم فتاویٰ جات کی فہرست:</p>
+    <button class="btn-primary" onclick="toggleFatwaList()">فتاویٰ دیکھیں</button>
+    <div class="fatwa-list" id="fatwaList">
+      <input type="text" id="searchInput" onkeyup="filterFatwas()" placeholder="فتوی تلاش کریں..." />
+      <ul>
+        <li><a href="fatwas/fatwa1.pdf" target="_blank">نماز قضا کا طریقہ</a></li>
+        <li><a href="fatwas/fatwa2.pdf" target="_blank">طلاق ثلاثہ کا شرعی حکم</a></li>
+        <li><a href="fatwas/fatwa3.pdf" target="_blank">بینک سے قرض لینا کیسا؟</a></li>
+      </ul>
+    </div>
+  </section>
 </main>
 
 <footer>
   &copy; 2025 محکمہ عالیہ شریعہ، دارالقضاء مدگل | تمام حقوق محفوظ ہیں
 </footer>
-
 </body>
 </html>
