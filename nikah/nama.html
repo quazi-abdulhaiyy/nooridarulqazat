@@ -120,8 +120,6 @@
       const groomFather = document.getElementById('groomFather').value;
       const brideName = document.getElementById('brideName').value;
       const brideFather = document.getElementById('brideFather').value;
-      const wakeelName = document.getElementById('wakeelName').value;
-      const wakeelFather = document.getElementById('wakeelFather').value;
       const witness1 = document.getElementById('witness1').value;
       const witness1Father = document.getElementById('witness1Father').value;
       const witness2 = document.getElementById('witness2').value;
@@ -132,25 +130,22 @@
       const place = document.getElementById('place').value;
       const qariName = document.getElementById('qariName').value;
 
-      doc.setFont("Helvetica");
+      doc.setFont("helvetica", "normal");
       doc.setFontSize(14);
-      doc.text("نکاح نامہ", 105, 20, { align: "center" });
 
-      doc.text(`دولہا: ${groomName} ولد ${groomFather}`, 20, 40);
-      doc.text(`دولہن: ${brideName} بنت ${brideFather}`, 20, 50);
-      doc.text(`وکیل: ${wakeelName} ولد ${wakeelFather}`, 20, 60);
-      doc.text(`گواہ اوّل: ${witness1} ولد ${witness1Father}`, 20, 70);
-      doc.text(`گواہ ثانی: ${witness2} ولد ${witness2Father}`, 20, 80);
-      doc.text(`آدھار (دولہا): ${groomAadhaar}`, 20, 90);
-      doc.text(`آدھار (دولہن): ${brideAadhaar}`, 20, 100);
-      doc.text(`تاریخ نکاح: ${nikahDate}`, 20, 110);
-      doc.text(`جائے نکاح: ${place}`, 20, 120);
-      doc.text(`قاری النکاح: ${qariName}`, 20, 130);
+      doc.text("Nikah Nama", 105, 20, { align: "center" });
+      doc.text(`Groom: ${groomName} s/o ${groomFather}`, 20, 40);
+      doc.text(`Bride: ${brideName} d/o ${brideFather}`, 20, 50);
+      doc.text(`Aadhaar (Groom): ${groomAadhaar}`, 20, 60);
+      doc.text(`Aadhaar (Bride): ${brideAadhaar}`, 20, 70);
+      doc.text(`Witness 1: ${witness1} s/o ${witness1Father}`, 20, 80);
+      doc.text(`Witness 2: ${witness2} s/o ${witness2Father}`, 20, 90);
+      doc.text(`Nikah Date: ${nikahDate}`, 20, 100);
+      doc.text(`Place: ${place}`, 20, 110);
+      doc.text(`Qari: ${qariName}`, 20, 120);
 
-      doc.text("دستخط:", 20, 150);
-      doc.line(40, 150, 180, 150);
-
-      doc.save("nikahnama.pdf");
+      const fileName = `NikahNama-${groomName}-${brideName}.pdf`;
+      doc.save(fileName);
     }
   </script>
 </body>
