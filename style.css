@@ -1,12 +1,24 @@
-body {
-    font-family: 'Noto Nastaliq Urdu', serif;
-    direction: rtl;
-    background-color: #f9f9f9;
-    color: #222;
-    padding: 20px;
+<style>
+/* 🔷 HEADER STYLE */
+.main-header {
+  background: linear-gradient(to left, #004b6b, #006f8d);
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;
+  border-bottom: 4px solid #00acc1;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-input, button {
-    margin: 5px 0;
-    padding: 10px;
-    font-size: 16px;
+.main-header h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.4;
+  font-family: 'Noto Nastaliq Urdu', serif;
 }
+.main-header p {
+  font-size: 18px;
+  margin-top: 10px;
+  font-style: italic;
+}
+</style>
