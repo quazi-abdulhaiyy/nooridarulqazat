@@ -74,7 +74,15 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
-    async function generatePDF() {
+    function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
+
+async function generatePDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       const data = {
@@ -82,7 +90,7 @@
         "Groom's Father": document.getElementById('groomFather').value,
         'Bride Name': document.getElementById('brideName').value,
         "Bride's Father": document.getElementById('brideFather').value,
-        'Nikah Date': document.getElementById('nikahDate').value,
+        'Nikah Date': formatDate(document.getElementById('nikahDate').value),
         'Place of Nikah': document.getElementById('place').value,
                 'Groom Aadhaar': document.getElementById('groomAadhaar').value,
         'Bride Aadhaar': document.getElementById('brideAadhaar').value,
