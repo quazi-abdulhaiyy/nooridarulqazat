@@ -139,8 +139,9 @@
 
   <script>
     function formatDate(dateStr) {
-      if (!dateStr) return ''; // اگر تاریخ خالی ہو تو خالی سٹرنگ واپس کریں
+      if (!dateStr) return '';
       const date = new Date(dateStr);
+      // مہینے کو 0 سے 11 تک ہونے کی وجہ سے +1 کرنا ضروری ہے
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
@@ -148,8 +149,8 @@
     }
 
     async function generatePDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
+      // jsPDF کو صحیح طریقے سے انیشیالائز کریں
+      const doc = new jspdf.jsPDF();
 
       // Get values from form
       const place = document.getElementById('place').value;
@@ -190,21 +191,27 @@
       doc.setTextColor(0, 0, 0);
 
       let y = 65;
-      doc.text(Place of Nikah: ${place}, 20, y); y += 8; // Reduced line spacing for more content
+      doc.text(Place of Nikah: ${place}, 20, y); y += 8;
       doc.text(Date of Nikah: ${nikahDate}, 20, y); y += 12;
 
       doc.text(Groom's Name: ${groomName}, 20, y); y += 8;
       doc.text(Father's Name: ${groomFather}, 20, y); y += 8;
       doc.text(Age: ${groomAge}, 20, y); y += 8;
       doc.text(Profession: ${groomProfession}, 20, y); y += 8;
-      doc.text(Address: ${groomAddress}, 20, y); y += 8;
+      // Address wrapping
+      const groomAddressLines = doc.splitTextToSize(Address: ${groomAddress}, 170); // 170mm width
+      doc.text(groomAddressLines, 20, y);
+      y += (groomAddressLines.length * 8); // Adjust y based on number of lines
       doc.text(Aadhaar No.: ${groomAadhaar}, 20, y); y += 12;
 
       doc.text(Bride's Name: ${brideName}, 20, y); y += 8;
       doc.text(Father's Name: ${brideFather}, 20, y); y += 8;
       doc.text(Age: ${brideAge}, 20, y); y += 8;
       doc.text(Profession: ${brideProfession}, 20, y); y += 8;
-      doc.text(Address: ${brideAddress}, 20, y); y += 8;
+      // Address wrapping
+      const brideAddressLines = doc.splitTextToSize(Address: ${brideAddress}, 170);
+      doc.text(brideAddressLines, 20, y);
+      y += (brideAddressLines.length * 8);
       doc.text(Aadhaar No.: ${brideAadhaar}, 20, y); y += 12;
 
       doc.text(Wakeel's Name: ${wakeelName}, 20, y); y += 8;
