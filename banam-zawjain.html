@@ -101,14 +101,17 @@
         'Qari Phone': document.getElementById('qariPhone').value
       };
 
-      doc.setFont("helvetica");
-      doc.setFontSize(12);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(40, 90, 130); // Muted blue for heading
+      doc.setFontSize(14);
       doc.text("OFFICE OF THE QUAZAAT", 20, 20);
       doc.text("Androon Qila Mudgal. 584125 Tq. Lingsugur Dist. Raichur, Karnataka", 20, 28);
       doc.text("CHIEF QUAZI: MAULANA QUAZI ZAMEER AHMAD AZHARI", 20, 36);
       doc.text("Cell No. 9916922473", 20, 44);
 
-      doc.setFontSize(14);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
       let y = 60;
       for (const key in data) {
         doc.text(`${key}: ${data[key]}`, 20, y);
