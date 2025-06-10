@@ -63,7 +63,7 @@
       <label>دلہن کے والد کا نام:<input type="text" id="brideFather" required></label>
       <label>تاریخ نکاح:<input type="date" id="nikahDate" required></label>
       <label>جائے نکاح:<input type="text" id="place" required></label>
-            <label>دولہا کا آدھار نمبر:<input type="text" id="groomAadhaar" required></label>
+      <label>دولہا کا آدھار نمبر:<input type="text" id="groomAadhaar" required></label>
       <label>دلہن کا آدھار نمبر:<input type="text" id="brideAadhaar" required></label>
       <label>اینوِنٹر کا نام:<input type="text" id="inviterName" required></label>
       <label>اینوِنٹر کا فون نمبر:<input type="tel" id="inviterPhone" required></label>
@@ -75,16 +75,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     function formatDate(dateStr) {
-  const date = new Date(dateStr);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = date.getFullYear();
-  return `${day}-${month}-${year}`;
-}
+      const date = new Date(dateStr);
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}-${month}-${year}`;
+    }
 
-async function generatePDF() {
+    async function generatePDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
+
       const data = {
         'Groom Name': document.getElementById('groomName').value,
         "Groom's Father": document.getElementById('groomFather').value,
@@ -92,20 +93,28 @@ async function generatePDF() {
         "Bride's Father": document.getElementById('brideFather').value,
         'Nikah Date': formatDate(document.getElementById('nikahDate').value),
         'Place of Nikah': document.getElementById('place').value,
-                'Groom Aadhaar': document.getElementById('groomAadhaar').value,
+        'Groom Aadhaar': document.getElementById('groomAadhaar').value,
         'Bride Aadhaar': document.getElementById('brideAadhaar').value,
         'Inviter Name': document.getElementById('inviterName').value,
         'Inviter Phone': document.getElementById('inviterPhone').value,
         'Qari Name': document.getElementById('qariName').value,
         'Qari Phone': document.getElementById('qariPhone').value
       };
+
       doc.setFont("helvetica");
+      doc.setFontSize(12);
+      doc.text("OFFICE OF THE QUAZAAT", 20, 20);
+      doc.text("Androon Qila Mudgal. 584125 Tq. Lingsugur Dist. Raichur, Karnataka", 20, 28);
+      doc.text("CHIEF QUAZI: MAULANA QUAZI ZAMEER AHMAD AZHARI", 20, 36);
+      doc.text("Cell No. 9916922473", 20, 44);
+
       doc.setFontSize(14);
-      let y = 20;
+      let y = 60;
       for (const key in data) {
         doc.text(`${key}: ${data[key]}`, 20, y);
         y += 10;
       }
+
       doc.save('banam-zawjain.pdf');
     }
   </script>
