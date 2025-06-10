@@ -14,17 +14,19 @@
       padding: 20px;
       font-size: 1.1rem;
     }
+
     h1 {
       text-align: center;
       color: #064663;
       margin-bottom: 10px;
     }
+
     .note {
       text-align: center;
       font-size: 1.2rem;
       margin-bottom: 25px;
-      font-family: 'Noto Nastaliq Urdu', serif;
     }
+
     form {
       max-width: 800px;
       margin: auto;
@@ -33,10 +35,12 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     label {
       display: block;
       margin-bottom: 5px;
     }
+
     input, textarea {
       width: 100%;
       padding: 10px;
@@ -45,6 +49,7 @@
       border-radius: 6px;
       font-size: 1rem;
     }
+
     button {
       background-color: #064663;
       color: white;
@@ -54,6 +59,7 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #04384a;
     }
@@ -64,7 +70,9 @@
   <div class="note">
     براہ کرم اس فارم میں تمام نام آدھار کارڈ میں درج اصل انگریزی اسپیلنگ (Aadhaar spelling) کے مطابق ہی لکھے جائیں تاکہ قانونی دستاویزات میں مطابقت برقرار رہے۔
   </div>
+
   <form id="nikahForm">
+    <!-- دولہا کی تفصیلات -->
     <label>جائے نکاح:</label>
     <input type="text" id="place" required />
 
@@ -89,6 +97,7 @@
     <label>دولہا کا آدھار نمبر:</label>
     <input type="text" id="groomAadhaar" required />
 
+    <!-- دلہن کی تفصیلات -->
     <label>دلہن کا نام:</label>
     <input type="text" id="brideName" required />
 
@@ -107,6 +116,7 @@
     <label>دلہن کا آدھار نمبر:</label>
     <input type="text" id="brideAadhaar" required />
 
+    <!-- وکیل اور گواہوں کی تفصیلات -->
     <label>وکیل کا نام:</label>
     <input type="text" id="wakeelName" />
 
@@ -141,22 +151,18 @@
     function formatDate(dateStr) {
       if (!dateStr) return '';
       const date = new Date(dateStr);
-      // مہینے کو 0 سے 11 تک ہونے کی وجہ سے +1 کرنا ضروری ہے
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
-      return ${day}-${month}-${year};
+      return `${day}-${month}-${year}`;
     }
 
     async function generatePDF() {
-      // *یہاں اہم تبدیلی کی گئی ہے تاکہ jspdf.umd.min.js کے ساتھ کام کر سکے*
-      const { jsPDF } = window.jspdf; // یہ لائن jspdf.umd.min.js کے لیے صحیح ہے
+      const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
 
-      // Get values from form
       const place = document.getElementById('place').value;
       const nikahDate = formatDate(document.getElementById('nikahDate').value);
-
       const groomName = document.getElementById('groomName').value;
       const groomFather = document.getElementById('groomFather').value;
       const groomAge = document.getElementById('groomAge').value;
@@ -174,70 +180,4 @@
       const wakeelName = document.getElementById('wakeelName').value;
       const wakeelFather = document.getElementById('wakeelFather').value;
       const witness1 = document.getElementById('witness1').value;
-      const witness1Father = document.getElementById('witness1Father').value;
-      const witness2 = document.getElementById('witness2').value;
-      const witness2Father = document.getElementById('witness2Father').value;
-      const mehrAmount = document.getElementById('mehrAmount').value;
-      const qariName = document.getElementById('qariName').value;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(16);
-      doc.setTextColor(40, 90, 130);
-      doc.text("OFFICE OF THE QUAZAAT", 105, 20, { align: "center" });
-      doc.text("Androon Qila Mudgal. 584125 Tq. Lingsugur Dist. Raichur, Karnataka", 105, 30, { align: "center" });
-      doc.text("CHIEF QUAZI: MAULANA QUAZI ZAMEER AHMAD AZHARI", 105, 40, { align: "center" });
-      doc.text("Cell No. 9916922473", 105, 50, { align: "center" });
-
-      doc.setFontSize(14);
-      doc.setTextColor(0, 0, 0);
-
-      let y = 65;
-      doc.text(Place of Nikah: ${place}, 20, y); y += 8;
-      doc.text(Date of Nikah: ${nikahDate}, 20, y); y += 12;
-
-      doc.text(Groom's Name: ${groomName}, 20, y); y += 8;
-      doc.text(Father's Name: ${groomFather}, 20, y); y += 8;
-      doc.text(Age: ${groomAge}, 20, y); y += 8;
-      doc.text(Profession: ${groomProfession}, 20, y); y += 8;
-      // Address wrapping
-      const groomAddressLines = doc.splitTextToSize(Address: ${groomAddress}, 170); // 170mm width
-      doc.text(groomAddressLines, 20, y);
-      y += (groomAddressLines.length * 8); // Adjust y based on number of lines
-      doc.text(Aadhaar No.: ${groomAadhaar}, 20, y); y += 12;
-
-      doc.text(Bride's Name: ${brideName}, 20, y); y += 8;
-      doc.text(Father's Name: ${brideFather}, 20, y); y += 8;
-      doc.text(Age: ${brideAge}, 20, y); y += 8;
-      doc.text(Profession: ${brideProfession}, 20, y); y += 8;
-      // Address wrapping
-      const brideAddressLines = doc.splitTextToSize(Address: ${brideAddress}, 170);
-      doc.text(brideAddressLines, 20, y);
-      y += (brideAddressLines.length * 8);
-      doc.text(Aadhaar No.: ${brideAadhaar}, 20, y); y += 12;
-
-      doc.text(Wakeel's Name: ${wakeelName}, 20, y); y += 8;
-      doc.text(Father's Name (Wakeel): ${wakeelFather}, 20, y); y += 12;
-
-      doc.text(Witness 1 Name: ${witness1}, 20, y); y += 8;
-      doc.text(Father's Name (Witness 1): ${witness1Father}, 20, y); y += 12;
-
-      doc.text(Witness 2 Name: ${witness2}, 20, y); y += 8;
-      doc.text(Father's Name (Witness 2): ${witness2Father}, 20, y); y += 12;
-
-      doc.text(Mehr Amount: ${mehrAmount}, 20, y); y += 12;
-
-      doc.text(Qari-un-Nikah's Name: ${qariName}, 20, y); y += 20;
-
-      // Add signature lines (as per your original template's textarea placeholder)
-      doc.text("________", 20, y);
-      doc.text("Signature of Groom", 20, y + 5);
-      doc.text("________", 120, y);
-      doc.text("Signature of Bride", 120, y + 5);
-
-
-      const fileName = NikahNama-${groomName}-${brideName}.pdf;
-      doc.save(fileName);
-    }
-  </script>
-</body>
-</html>
+      const witness1Father = document.getElementById('witness1Father').
