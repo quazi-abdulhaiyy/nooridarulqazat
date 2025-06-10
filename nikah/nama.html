@@ -65,17 +65,47 @@
     براہ کرم اس فارم میں تمام نام آدھار کارڈ میں درج اصل انگریزی اسپیلنگ (Aadhaar spelling) کے مطابق ہی لکھے جائیں تاکہ قانونی دستاویزات میں مطابقت برقرار رہے۔
   </div>
   <form id="nikahForm">
+    <label>جائے نکاح:</label>
+    <input type="text" id="place" required />
+
+    <label>نکاح کی تاریخ:</label>
+    <input type="date" id="nikahDate" required />
+
     <label>دولہا کا نام:</label>
     <input type="text" id="groomName" required />
 
     <label>دولہا کے والد کا نام:</label>
     <input type="text" id="groomFather" required />
 
-    <label>دولہن کا نام:</label>
+    <label>دولہا کی عمر:</label>
+    <input type="number" id="groomAge" min="18" required />
+
+    <label>دولہا کا پیشہ:</label>
+    <input type="text" id="groomProfession" required />
+
+    <label>دولہا کا پتہ:</label>
+    <textarea id="groomAddress" rows="3" required></textarea>
+
+    <label>دولہا کا آدھار نمبر:</label>
+    <input type="text" id="groomAadhaar" required />
+
+    <label>دلہن کا نام:</label>
     <input type="text" id="brideName" required />
 
-    <label>دولہن کے والد کا نام:</label>
+    <label>دلہن کے والد کا نام:</label>
     <input type="text" id="brideFather" required />
+
+    <label>دلہن کی عمر:</label>
+    <input type="number" id="brideAge" min="18" required />
+
+    <label>دلہن کا پیشہ:</label>
+    <input type="text" id="brideProfession" required />
+
+    <label>دلہن کا پتہ:</label>
+    <textarea id="brideAddress" rows="3" required></textarea>
+
+    <label>دلہن کا آدھار نمبر:</label>
+    <input type="text" id="brideAadhaar" required />
 
     <label>وکیل کا نام:</label>
     <input type="text" id="wakeelName" />
@@ -95,29 +125,11 @@
     <label>گواہ ثانی کے والد کا نام:</label>
     <input type="text" id="witness2Father" />
 
-    <label>دولہا کا آدھار نمبر:</label>
-    <input type="text" id="groomAadhaar" />
-
-    <label>دولہن کا آدھار نمبر:</label>
-    <input type="text" id="brideAadhaar" />
-
     <label>مہر کی مقدار یا رقم:</label>
     <input type="text" id="mehrAmount" />
 
-    <label>دولہا کی تصویر:</label>
-    <input type="file" id="groomPhoto" accept="image/*" />
-
-    <label>دولہن کی تصویر:</label>
-    <input type="file" id="bridePhoto" accept="image/*" />
-
-    <label>نکاح کی تاریخ:</label>
-    <input type="date" id="nikahDate" />
-
-    <label>جائے نکاح:</label>
-    <input type="text" id="place" />
-
     <label>قاری النکاح کا نام:</label>
-    <input type="text" id="qariName" />
+    <input type="text" id="qariName" required />
 
     <label>فریقین کے دستخط (صرف نوٹ کرنے کی جگہ):</label>
     <textarea rows="3" placeholder="یہاں دستخط کی جگہ مخصوص کی جائے گی"></textarea>
@@ -127,32 +139,43 @@
 
   <script>
     function formatDate(dateStr) {
+      if (!dateStr) return ''; // اگر تاریخ خالی ہو تو خالی سٹرنگ واپس کریں
       const date = new Date(dateStr);
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
-      return `${day}-${month}-${year}`;
+      return ${day}-${month}-${year};
     }
 
     async function generatePDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
 
+      // Get values from form
+      const place = document.getElementById('place').value;
+      const nikahDate = formatDate(document.getElementById('nikahDate').value);
+
       const groomName = document.getElementById('groomName').value;
       const groomFather = document.getElementById('groomFather').value;
+      const groomAge = document.getElementById('groomAge').value;
+      const groomProfession = document.getElementById('groomProfession').value;
+      const groomAddress = document.getElementById('groomAddress').value;
+      const groomAadhaar = document.getElementById('groomAadhaar').value;
+
       const brideName = document.getElementById('brideName').value;
       const brideFather = document.getElementById('brideFather').value;
+      const brideAge = document.getElementById('brideAge').value;
+      const brideProfession = document.getElementById('brideProfession').value;
+      const brideAddress = document.getElementById('brideAddress').value;
+      const brideAadhaar = document.getElementById('brideAadhaar').value;
+
       const wakeelName = document.getElementById('wakeelName').value;
       const wakeelFather = document.getElementById('wakeelFather').value;
       const witness1 = document.getElementById('witness1').value;
       const witness1Father = document.getElementById('witness1Father').value;
       const witness2 = document.getElementById('witness2').value;
       const witness2Father = document.getElementById('witness2Father').value;
-      const groomAadhaar = document.getElementById('groomAadhaar').value;
-      const brideAadhaar = document.getElementById('brideAadhaar').value;
       const mehrAmount = document.getElementById('mehrAmount').value;
-      const nikahDate = formatDate(document.getElementById('nikahDate').value);
-      const place = document.getElementById('place').value;
       const qariName = document.getElementById('qariName').value;
 
       doc.setFont("helvetica", "normal");
@@ -167,19 +190,44 @@
       doc.setTextColor(0, 0, 0);
 
       let y = 65;
-      doc.text(`Groom: ${groomName} s/o ${groomFather}`, 20, y); y += 10;
-      doc.text(`Bride: ${brideName} d/o ${brideFather}`, 20, y); y += 10;
-      doc.text(`Wakeel: ${wakeelName} s/o ${wakeelFather}`, 20, y); y += 10;
-      doc.text(`Witness 1: ${witness1} s/o ${witness1Father}`, 20, y); y += 10;
-      doc.text(`Witness 2: ${witness2} s/o ${witness2Father}`, 20, y); y += 10;
-      doc.text(`Groom Aadhaar: ${groomAadhaar}`, 20, y); y += 10;
-      doc.text(`Bride Aadhaar: ${brideAadhaar}`, 20, y); y += 10;
-      doc.text(`Mehr Amount: ${mehrAmount}`, 20, y); y += 10;
-      doc.text(`Nikah Date: ${nikahDate}`, 20, y); y += 10;
-      doc.text(`Place: ${place}`, 20, y); y += 10;
-      doc.text(`Qari: ${qariName}`, 20, y);
+      doc.text(Place of Nikah: ${place}, 20, y); y += 8; // Reduced line spacing for more content
+      doc.text(Date of Nikah: ${nikahDate}, 20, y); y += 12;
 
-      const fileName = `NikahNama-${groomName}-${brideName}.pdf`;
+      doc.text(Groom's Name: ${groomName}, 20, y); y += 8;
+      doc.text(Father's Name: ${groomFather}, 20, y); y += 8;
+      doc.text(Age: ${groomAge}, 20, y); y += 8;
+      doc.text(Profession: ${groomProfession}, 20, y); y += 8;
+      doc.text(Address: ${groomAddress}, 20, y); y += 8;
+      doc.text(Aadhaar No.: ${groomAadhaar}, 20, y); y += 12;
+
+      doc.text(Bride's Name: ${brideName}, 20, y); y += 8;
+      doc.text(Father's Name: ${brideFather}, 20, y); y += 8;
+      doc.text(Age: ${brideAge}, 20, y); y += 8;
+      doc.text(Profession: ${brideProfession}, 20, y); y += 8;
+      doc.text(Address: ${brideAddress}, 20, y); y += 8;
+      doc.text(Aadhaar No.: ${brideAadhaar}, 20, y); y += 12;
+
+      doc.text(Wakeel's Name: ${wakeelName}, 20, y); y += 8;
+      doc.text(Father's Name (Wakeel): ${wakeelFather}, 20, y); y += 12;
+
+      doc.text(Witness 1 Name: ${witness1}, 20, y); y += 8;
+      doc.text(Father's Name (Witness 1): ${witness1Father}, 20, y); y += 12;
+
+      doc.text(Witness 2 Name: ${witness2}, 20, y); y += 8;
+      doc.text(Father's Name (Witness 2): ${witness2Father}, 20, y); y += 12;
+
+      doc.text(Mehr Amount: ${mehrAmount}, 20, y); y += 12;
+
+      doc.text(Qari-un-Nikah's Name: ${qariName}, 20, y); y += 20;
+
+      // Add signature lines (as per your original template's textarea placeholder)
+      doc.text("________", 20, y);
+      doc.text("Signature of Groom", 20, y + 5);
+      doc.text("________", 120, y);
+      doc.text("Signature of Bride", 120, y + 5);
+
+
+      const fileName = NikahNama-${groomName}-${brideName}.pdf;
       doc.save(fileName);
     }
   </script>
