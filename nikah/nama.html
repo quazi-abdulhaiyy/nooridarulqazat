@@ -149,8 +149,9 @@
     }
 
     async function generatePDF() {
-      // jsPDF کو صحیح طریقے سے انیشیالائز کریں
-      const doc = new jspdf.jsPDF();
+      // *یہاں اہم تبدیلی کی گئی ہے تاکہ jspdf.umd.min.js کے ساتھ کام کر سکے*
+      const { jsPDF } = window.jspdf; // یہ لائن jspdf.umd.min.js کے لیے صحیح ہے
+      const doc = new jsPDF();
 
       // Get values from form
       const place = document.getElementById('place').value;
