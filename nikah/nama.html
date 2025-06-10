@@ -1,179 +1,72 @@
-<!DOCTYPE html>
-<html lang="ur" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>نکاح فارم</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css');
+async function generatePDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
-    body {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #f4f6f8;
-      padding: 20px;
-      font-size: 1.1rem;
+  // فارم کے فیلڈز سے ڈیٹا حاصل کریں
+  const groomName = document.getElementById('groomName').value;
+  const groomFather = document.getElementById('groomFather').value;
+  const brideName = document.getElementById('brideName').value;
+  const brideFather = document.getElementById('brideFather').value;
+  const wakeelName = document.getElementById('wakeelName').value;
+  const wakeelFather = document.getElementById('wakeelFather').value;
+  const witness1 = document.getElementById('witness1').value;
+  const witness1Father = document.getElementById('witness1Father').value;
+  const witness2 = document.getElementById('witness2').value;
+  const witness2Father = document.getElementById('witness2Father').value;
+  const groomAadhaar = document.getElementById('groomAadhaar').value;
+  const brideAadhaar = document.getElementById('brideAadhaar').value;
+  const mehrAmount = document.getElementById('mehrAmount').value;
+  const nikahDate = formatDate(document.getElementById('nikahDate').value);
+  const place = document.getElementById('place').value;
+  const qariName = document.getElementById('qariName').value;
+
+  // تصویریں
+  const groomPhoto = document.getElementById('groomPhoto').files[0];
+  const bridePhoto = document.getElementById('bridePhoto').files[0];
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(16);
+  doc.setTextColor(40, 90, 130);
+  doc.text("OFFICE OF THE QUAZAAT", 105, 20, { align: "center" });
+  doc.text("Androon Qila Mudgal. 584125 Tq. Lingsugur Dist. Raichur, Karnataka", 105, 30, { align: "center" });
+  doc.text("CHIEF QUAZI: MAULANA QUAZI ZAMEER AHMAD AZHARI", 105, 40, { align: "center" });
+  doc.text("Cell No. 9916922473", 105, 50, { align: "center" });
+
+  doc.setFontSize(14);
+  doc.setTextColor(0, 0, 0);
+  let y = 65;
+
+  doc.text(`Groom: ${groomName} s/o ${groomFather}`, 20, y); y += 10;
+  doc.text(`Bride: ${brideName} d/o ${brideFather}`, 20, y); y += 10;
+  doc.text(`Wakeel: ${wakeelName} s/o ${wakeelFather}`, 20, y); y += 10;
+  doc.text(`Witness 1: ${witness1} s/o ${witness1Father}`, 20, y); y += 10;
+  doc.text(`Witness 2: ${witness2} s/o ${witness2Father}`, 20, y); y += 10;
+  doc.text(`Groom Aadhaar: ${groomAadhaar}`, 20, y); y += 10;
+  doc.text(`Bride Aadhaar: ${brideAadhaar}`, 20, y); y += 10;
+  doc.text(`Mehr Amount: ${mehrAmount}`, 20, y); y += 10;
+  doc.text(`Nikah Date: ${nikahDate}`, 20, y); y += 10;
+  doc.text(`Place: ${place}`, 20, y); y += 10;
+  doc.text(`Qari: ${qariName}`, 20, y); y += 20;
+
+  // ⚠️ تصویریں شامل کریں
+  function addImage(file, x, y, width, height, callback) {
+    if (!file) {
+      callback();
+      return;
     }
-    h1 {
-      text-align: center;
-      color: #064663;
-      margin-bottom: 10px;
-    }
-    .note {
-      text-align: center;
-      font-size: 1.2rem;
-      margin-bottom: 25px;
-      font-family: 'Noto Nastaliq Urdu', serif;
-    }
-    form {
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-    button {
-      background-color: #064663;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      font-size: 1.1rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #04384a;
-    }
-  </style>
-</head>
-<body>
-  <h1>نکاح فارم</h1>
-  <div class="note">
-    براہ کرم اس فارم میں تمام نام آدھار کارڈ میں درج اصل انگریزی اسپیلنگ (Aadhaar spelling) کے مطابق ہی لکھے جائیں تاکہ قانونی دستاویزات میں مطابقت برقرار رہے۔
-  </div>
-  <form id="nikahForm">
-    <label>دولہا کا نام:</label>
-    <input type="text" id="groomName" required />
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const imgData = e.target.result;
+      doc.addImage(imgData, "JPEG", x, y, width, height);
+      callback();
+    };
+    reader.readAsDataURL(file);
+  }
 
-    <label>دولہا کے والد کا نام:</label>
-    <input type="text" id="groomFather" required />
-
-    <label>دولہن کا نام:</label>
-    <input type="text" id="brideName" required />
-
-    <label>دولہن کے والد کا نام:</label>
-    <input type="text" id="brideFather" required />
-
-    <label>وکیل کا نام:</label>
-    <input type="text" id="wakeelName" />
-
-    <label>وکیل کے والد کا نام:</label>
-    <input type="text" id="wakeelFather" />
-
-    <label>گواہ اوّل کا نام:</label>
-    <input type="text" id="witness1" />
-
-    <label>گواہ اوّل کے والد کا نام:</label>
-    <input type="text" id="witness1Father" />
-
-    <label>گواہ ثانی کا نام:</label>
-    <input type="text" id="witness2" />
-
-    <label>گواہ ثانی کے والد کا نام:</label>
-    <input type="text" id="witness2Father" />
-
-    <label>دولہا کا آدھار نمبر:</label>
-    <input type="text" id="groomAadhaar" />
-
-    <label>دولہن کا آدھار نمبر:</label>
-    <input type="text" id="brideAadhaar" />
-
-    <label>مہر کی مقدار یا رقم:</label>
-    <input type="text" id="mehrAmount" />
-
-    <label>دولہا کی تصویر:</label>
-    <input type="file" id="groomPhoto" accept="image/*" />
-
-    <label>دولہن کی تصویر:</label>
-    <input type="file" id="bridePhoto" accept="image/*" />
-
-    <label>نکاح کی تاریخ:</label>
-    <input type="date" id="nikahDate" />
-
-    <label>جائے نکاح:</label>
-    <input type="text" id="place" />
-
-    <label>قاری النکاح کا نام:</label>
-    <input type="text" id="qariName" />
-
-    <label>فریقین کے دستخط (صرف نوٹ کرنے کی جگہ):</label>
-    <textarea rows="3" placeholder="یہاں دستخط کی جگہ مخصوص کی جائے گی"></textarea>
-
-    <button type="button" onclick="generatePDF()">PDF تیار کریں</button>
-  </form>
-
-  <script>
-    function formatDate(dateStr) {
-      const date = new Date(dateStr);
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}-${month}-${year}`;
-    }
-
-    async function generatePDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-
-      const groomName = document.getElementById('groomName').value;
-      const groomFather = document.getElementById('groomFather').value;
-      const brideName = document.getElementById('brideName').value;
-      const brideFather = document.getElementById('brideFather').value;
-      const wakeelName = document.getElementById('wakeelName').value;
-      const wakeelFather = document.getElementById('wakeelFather').value;
-      const witness1 = document.getElementById('witness1').value;
-      const witness1Father = document.getElementById('witness1Father').value;
-      const witness2 = document.getElementById('witness2').value;
-      const witness2Father = document.getElementById('witness2Father').value;
-      const groomAadhaar = document.getElementById('groomAadhaar').value;
-      const brideAadhaar = document.getElementById('brideAadhaar').value;
-      const mehrAmount = document.getElementById('mehrAmount').value;
-      const nikahDate = formatDate(document.getElementById('nikahDate').value);
-      const place = document.getElementById('place').value;
-      const qariName = document.getElementById('qariName').value;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(14);
-
-      doc.text("Nikah Nama", 105, 20, { align: "center" });
-      doc.text(`Groom: ${groomName} s/o ${groomFather}`, 20, 40);
-      doc.text(`Bride: ${brideName} d/o ${brideFather}`, 20, 50);
-      doc.text(`Wakeel: ${wakeelName} s/o ${wakeelFather}`, 20, 60);
-      doc.text(`Witness 1: ${witness1} s/o ${witness1Father}`, 20, 70);
-      doc.text(`Witness 2: ${witness2} s/o ${witness2Father}`, 20, 80);
-      doc.text(`Groom Aadhaar: ${groomAadhaar}`, 20, 90);
-      doc.text(`Bride Aadhaar: ${brideAadhaar}`, 20, 100);
-      doc.text(`Mehr Amount: ${mehrAmount}`, 20, 110);
-      doc.text(`Nikah Date: ${nikahDate}`, 20, 120);
-      doc.text(`Place: ${place}`, 20, 130);
-      doc.text(`Qari: ${qariName}`, 20, 140);
-
+  addImage(groomPhoto, 20, y, 40, 50, () => {
+    addImage(bridePhoto, 80, y, 40, 50, () => {
       const fileName = `NikahNama-${groomName}-${brideName}.pdf`;
       doc.save(fileName);
-    }
-  </script>
-</body>
-</html>
+    });
+  });
+}
