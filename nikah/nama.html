@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>نکاح فارم</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css');
     body {
@@ -62,7 +62,7 @@
   <div class="note">
     براہ کرم تمام معلومات درست طریقے سے پر کریں۔
   </div>
-  <form id="nikahForm">
+  <div id="nikahForm">
     <label>جائے نکاح:</label>
     <input type="text" id="place" required />
 
@@ -122,92 +122,21 @@
 
     <label>گواہ دوم کے والد کا نام:</label>
     <input type="text" id="witness2Father" />
-
-    <button type="button" onclick="generatePDF()">PDF تیار کریں</button>
-  </form>
+  </div>
+  <br>
+  <button onclick="generatePDF()">PDF تیار کریں</button>
 
   <script>
-    function formatDate(dateStr) {
-      if (!dateStr) return '';
-      const date = new Date(dateStr);
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}-${month}-${year}`;
-    }
-
     function generatePDF() {
-      const doc = new jsPDF();
-      doc.setFontSize(14);
-
-      const place = document.getElementById('place').value;
-      const nikahDate = formatDate(document.getElementById('nikahDate').value);
-      const groomName = document.getElementById('groomName').value;
-      const groomFather = document.getElementById('groomFather').value;
-      const groomAge = document.getElementById('groomAge').value;
-      const groomProfession = document.getElementById('groomProfession').value;
-      const groomAddress = document.getElementById('groomAddress').value;
-
-      const brideName = document.getElementById('brideName').value;
-      const brideFather = document.getElementById('brideFather').value;
-      const brideAge = document.getElementById('brideAge').value;
-      const brideProfession = document.getElementById('brideProfession').value;
-      const brideAddress = document.getElementById('brideAddress').value;
-
-      const mehrAmount = document.getElementById('mehrAmount').value;
-      const qariName = document.getElementById('qariName').value;
-      const wakeelName = document.getElementById('wakeelName').value;
-      const wakeelFather = document.getElementById('wakeelFather').value;
-      const witness1 = document.getElementById('witness1').value;
-      const witness1Father = document.getElementById('witness1Father').value;
-      const witness2 = document.getElementById('witness2').value;
-      const witness2Father = document.getElementById('witness2Father').value;
-
-      let y = 20;
-      doc.text("نکاح نامہ", 105, y, null, null, 'center'); y += 10;
-
-      doc.text(`جائے نکاح: ${place}`, 20, y); y += 10;
-      doc.text(`نکاح کی تاریخ: ${nikahDate}`, 20, y); y += 10;
-
-      doc.text(`دولہا کا نام: ${groomName}`, 20, y); y += 10;
-      doc.text(`والد کا نام: ${groomFather}`, 20, y); y += 10;
-      doc.text(`عمر: ${groomAge}`, 20, y); y += 10;
-      doc.text(`پیشہ: ${groomProfession}`, 20, y); y += 10;
-      doc.text("پتہ:", 20, y); y += 8;
-      doc.text(doc.splitTextToSize(groomAddress, 170), 20, y); y += 20;
-
-      doc.text(`دلہن کا نام: ${brideName}`, 20, y); y += 10;
-      doc.text(`والد کا نام: ${brideFather}`, 20, y); y += 10;
-      doc.text(`عمر: ${brideAge}`, 20, y); y += 10;
-      doc.text(`پیشہ: ${brideProfession}`, 20, y); y += 10;
-      doc.text("پتہ:", 20, y); y += 8;
-      doc.text(doc.splitTextToSize(brideAddress, 170), 20, y); y += 20;
-
-      doc.text(`مہر کی رقم: ${mehrAmount}`, 20, y); y += 10;
-      doc.text(`قاری النکاح: ${qariName}`, 20, y); y += 10;
-
-      if (wakeelName) {
-        doc.text(`وکیل کا نام: ${wakeelName}`, 20, y); y += 10;
-        doc.text(`والد کا نام (وکیل): ${wakeelFather}`, 20, y); y += 10;
-      }
-
-      if (witness1) {
-        doc.text(`گواہ اول: ${witness1}`, 20, y); y += 10;
-        doc.text(`والد کا نام (گواہ اول): ${witness1Father}`, 20, y); y += 10;
-      }
-
-      if (witness2) {
-        doc.text(`گواہ دوم: ${witness2}`, 20, y); y += 10;
-        doc.text(`والد کا نام (گواہ دوم): ${witness2Father}`, 20, y); y += 10;
-      }
-
-      y += 20;
-      doc.text("__________________", 20, y);
-      doc.text("دستخط دولہا", 20, y + 6);
-      doc.text("__________________", 120, y);
-      doc.text("دستخط دلہن", 120, y + 6);
-
-      doc.save(`NikahNama-${groomName}-${brideName}.pdf`);
+      const element = document.getElementById("nikahForm");
+      const opt = {
+        margin:       0.5,
+        filename:     'NikahNama.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
     }
   </script>
 </body>
