@@ -1,96 +1,133 @@
-<!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<!DOCTYPE html><html lang="ur" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>نکاح فارم</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نکاح فارم اندراج</title>
   <style>
     body {
-      font-family: Noto Nastaliq Urdu, serif;
+      font-family: 'Noto Nastaliq Urdu', serif;
       background-color: #f9f9f9;
-      padding: 2rem;
+      margin: 0;
+      padding: 20px;
       direction: rtl;
+      text-align: right;
     }
     h1 {
       text-align: center;
-      color: #005c99;
+      color: #064663;
     }
     form {
-      max-width: 700px;
-      margin: auto;
+      max-width: 800px;
+      margin: 0 auto;
       background: #fff;
-      padding: 2rem;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     label {
       display: block;
-      margin-top: 1rem;
+      margin-top: 15px;
       font-weight: bold;
     }
     input, textarea {
       width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.2rem;
-      font-size: 1rem;
+      padding: 10px;
+      margin-top: 5px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-family: inherit;
     }
     button {
-      margin-top: 2rem;
-      padding: 0.7rem 1.5rem;
-      background-color: #007BFF;
+      margin-top: 20px;
+      background-color: #0a9396;
       color: white;
       border: none;
-      border-radius: 5px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
       cursor: pointer;
     }
     button:hover {
-      background-color: #0056b3;
+      background-color: #007f81;
     }
   </style>
 </head>
 <body>
-  <h1>نکاح نامہ اندراج - دارالقضاء مدگل</h1>
+  <h1>نکاح فارم اندراج</h1>
   <form id="nikahForm">
-    <label>جائے نکاح: <input name="place" required></label>
-    <label>نکاح کی تاریخ: <input type="date" name="date" required></label>
-    <label>دولہا کا نام: <input name="groom_name" required></label>
-    <label>دولہے کے والد کا نام: <input name="groom_father" required></label>
-    <label>دولہا کی عمر: <input name="groom_age" required></label>
-    <label>دولہا کا پیشہ: <input name="groom_job" required></label>
-    <label>دولہا کا پتہ: <input name="groom_address" required></label>
-    <label>دلہن کا نام: <input name="bride_name" required></label>
-    <label>دلہن کے والد کا نام: <input name="bride_father" required></label>
-    <label>دلہن کی عمر: <input name="bride_age" required></label>
-    <label>دلہن کا پیشہ: <input name="bride_job" required></label>
-    <label>دلہن کا پتہ: <input name="bride_address" required></label>
-    <label>مہر کی رقم: <input name="mehr" required></label>
-    <label>وکیل کا نام: <input name="wakeel_name" required></label>
-    <label>وکیل کے والد کا نام: <input name="wakeel_father" required></label>
-    <label>گواہ اول کا نام: <input name="witness1" required></label>
-    <label>گواہ اول کے والد کا نام: <input name="witness1_father" required></label>
-    <label>گواہ دوم کا نام: <input name="witness2" required></label>
-    <label>گواہ دوم کے والد کا نام: <input name="witness2_father" required></label>
-    <label>قاری النکاح کا نام: <input name="qaari" required></label>
-    <button type="submit">محفوظ کریں</button>
-  </form>
+    <label for="location">جائے نکاح:</label>
+    <input type="text" id="location" name="location" required><label for="date">نکاح کی تاریخ:</label>
+<input type="date" id="date" name="date" required>
 
-  <script>
+<label for="groomName">دولہا کا نام:</label>
+<input type="text" id="groomName" name="groomName" required>
+
+<label for="groomFather">دولہے کے والد کا نام:</label>
+<input type="text" id="groomFather" name="groomFather" required>
+
+<label for="groomAge">دولہے کی عمر:</label>
+<input type="number" id="groomAge" name="groomAge" required>
+
+<label for="groomJob">دولہا کا پیشہ:</label>
+<input type="text" id="groomJob" name="groomJob" required>
+
+<label for="groomAddress">دولہا کا پتہ:</label>
+<input type="text" id="groomAddress" name="groomAddress" required>
+
+<label for="groomPhone">دولہے کا فون نمبر:</label>
+<input type="tel" id="groomPhone" name="groomPhone" required>
+
+<label for="brideName">دلہن کا نام:</label>
+<input type="text" id="brideName" name="brideName" required>
+
+<label for="brideFather">دلہن کے والد کا نام:</label>
+<input type="text" id="brideFather" name="brideFather" required>
+
+<label for="brideAge">دلہن کی عمر:</label>
+<input type="number" id="brideAge" name="brideAge" required>
+
+<label for="brideJob">دلہن کا پیشہ:</label>
+<input type="text" id="brideJob" name="brideJob" required>
+
+<label for="brideAddress">دلہن کا پتہ:</label>
+<input type="text" id="brideAddress" name="brideAddress" required>
+
+<label for="mehr">مہر کی رقم:</label>
+<input type="text" id="mehr" name="mehr" required>
+
+<label for="vakilName">وکیل کا نام:</label>
+<input type="text" id="vakilName" name="vakilName" required>
+
+<label for="vakilFather">وکیل کے والد کا نام:</label>
+<input type="text" id="vakilFather" name="vakilFather" required>
+
+<label for="witness1">گواہ اول کا نام:</label>
+<input type="text" id="witness1" name="witness1" required>
+
+<label for="witness1Father">گواہ اول کے والد کا نام:</label>
+<input type="text" id="witness1Father" name="witness1Father" required>
+
+<label for="witness2">گواہ دوم کا نام:</label>
+<input type="text" id="witness2" name="witness2" required>
+
+<label for="witness2Father">گواہ دوم کے والد کا نام:</label>
+<input type="text" id="witness2Father" name="witness2Father" required>
+
+<label for="qazi">قاری النکاح کا نام:</label>
+<input type="text" id="qazi" name="qazi" required>
+
+<button type="submit">فارم جمع کریں</button>
+
+  </form>  <script>
     document.getElementById("nikahForm").addEventListener("submit", function(e) {
       e.preventDefault();
       const formData = new FormData(this);
-      const data = {};
-      formData.forEach((value, key) => { data[key] = value; });
-
       fetch("https://script.google.com/macros/s/AKfycbzl854mXWFSKEfwmbV5SpTf8Xj5Xdhykb1yViGQY-loMSsnNN_gtkjbMaDBz-wdztFI/exec", {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
+        body: formData
       })
-      .then(res => res.text())
-      .then(res => alert("نکاح فارم کامیابی سے محفوظ ہو گیا!"))
-      .catch(err => alert("خرابی: " + err));
+      .then(response => alert("فارم کامیابی سے جمع ہو گیا!"))
+      .catch(error => alert("کچھ خرابی ہوئی، دوبارہ کوشش کریں."));
     });
-  </script>
-</body>
+  </script></body>
 </html>
