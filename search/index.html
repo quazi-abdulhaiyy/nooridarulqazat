@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نکاح فارم تلاش کریں</title>
+  <style>
+    body {
+      font-family: Noto Nastaliq Urdu, serif;
+      background-color: #f8f8f8;
+      padding: 2rem;
+      direction: rtl;
+    }
+    h1 {
+      text-align: center;
+      color: #004466;
+    }
+    .box {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    label, input, button {
+      display: block;
+      width: 100%;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    input, button {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .result {
+      margin-top: 2rem;
+      background: #eef;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>نکاح فارم تلاش کریں</h1>
+  <div class="box">
+    <label>موبائل نمبر یا آدھار نمبر درج کریں:</label>
+    <input type="text" id="searchInput" placeholder="مثلاً: 9876543210">
+    <button onclick="searchRecord()">تلاش کریں</button>
+
+    <div id="result" class="result" style="display: none;"></div>
+  </div>
+
+  <script>
+    async function searchRecord() {
+      const input = document.getElementById("searchInput").value.trim();
+      const resultBox = document.getElementById("result");
+      resultBox.innerHTML = "تلاش جاری ہے...";
+      resultBox.style.display = "block";
+
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbzl854mXWFSKEfwmbV5SpTf8Xj5Xdhykb1yViGQY-loMSsnNN_gtkjbMaDBz-wdztFI/exec");
+        const data = await response.json();
+
+        const match = data.find(row =>
+          row.mobile === input || row.aadhaar === input
+        );
+
+        if (match) {
+          resultBox.innerHTML = `
+            <b>دولہا:</b> ${match.groom_name} بن ${match.groom_father}<br>
+            <b>دلہن:</b> ${match.bride_name} بنت ${match.bride_father}<br>
+            <b>نکاح کی تاریخ:</b> ${match.date}<br>
+            <b>جائے نکاح:</b> ${match.place}<br>
+            <b>مہر:</b> ${match.mehr}<br>
+            <b>قاری النکاح:</b> ${match.qaari}<br><br>
+            <b>وکیل:</b> ${match.wakeel_name} بن ${match.wakeel_father}<br>
+            <b>گواہ ۱:</b> ${match.witness1} بن ${match.witness1_father}<br>
+            <b>گواہ ۲:</b> ${match.witness2} بن ${match.witness2_father}<br>
+          `;
+        } else {
+          resultBox.innerHTML = "کوئی ریکارڈ نہیں ملا۔";
+        }
+      } catch (error) {
+        resultBox.innerHTML = "خرابی: ریکارڈ حاصل نہ ہو سکا۔";
+      }
+    }
+  </script>
+</body>
+</html>
