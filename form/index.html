@@ -1,153 +1,148 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>نکاح فارم اندراج</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css" rel="stylesheet">
   <style>
     body {
       font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #f4f4f4;
+      background-color: #f0f8ff;
       padding: 20px;
-      color: #222;
+      color: #333;
+      line-height: 2;
     }
-    h2 {
+    h1 {
       text-align: center;
-      margin-bottom: 20px;
-      color: #064663;
+      background-color: #064663;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
     }
     form {
-      background: white;
-      padding: 30px;
+      background-color: #ffffff;
+      padding: 20px;
       border-radius: 10px;
-      max-width: 700px;
+      max-width: 800px;
       margin: auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     label {
       display: block;
-      margin-top: 12px;
-      font-size: 1.2rem;
+      margin-top: 10px;
+      font-weight: bold;
     }
-    input, select {
+    input, textarea {
       width: 100%;
       padding: 8px;
-      font-size: 1rem;
-      margin-top: 5px;
+      margin-top: 4px;
+      border-radius: 5px;
       border: 1px solid #ccc;
-      border-radius: 6px;
+      font-family: inherit;
+      font-size: 1rem;
     }
     button {
-      margin-top: 20px;
       background-color: #0a9396;
       color: white;
-      padding: 12px 20px;
+      padding: 10px 20px;
       border: none;
-      border-radius: 6px;
-      font-size: 1.1rem;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 1.2rem;
       cursor: pointer;
     }
     button:hover {
       background-color: #007f81;
     }
+    .message {
+      text-align: center;
+      font-size: 1.2rem;
+      color: green;
+      margin-top: 20px;
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-<h2>نکاح فارم اندراج - محکمہ عالیہ شریعہ دارالقضاء مدگل</h2>
+<h1>نکاح فارم اندراج - محکمہ عالیہ شریعہ دارالقضاء مدگل</h1>
 
 <form id="nikahForm">
-  <label>1. جائے نکاح:</label>
-  <input name="جائے نکاح" required />
+  <label>1. جائے نکاح</label>
+  <input name="jaye_nikah" required>
 
-  <label>2. نکاح کی تاریخ:</label>
-  <input type="date" name="نکاح کی تاریخ" required />
+  <label>2. نکاح کی تاریخ</label>
+  <input name="nikah_date" required>
 
-  <label>3. دولہا کا نام:</label>
-  <input name="دولہا کا نام" required />
+  <label>3. دولہا کا نام</label>
+  <input name="dulha_name" required>
 
-  <label>4. دولہے کے والد کا نام:</label>
-  <input name="دولہے کے والد کا نام" required />
+  <label>4. دولہے کے والد کا نام</label>
+  <input name="dulha_father" required>
 
-  <label>5. دلہے کی عمر:</label>
-  <input name="دلہے کی عمر" required />
+  <label>5. دلہے کی عمر</label>
+  <input name="dulha_age" required>
 
-  <label>6. دولہا کا پیشہ:</label>
-  <input name="دولہا کا پیشہ" />
+  <label>6. دولہا کا پیشہ</label>
+  <input name="dulha_job" required>
 
-  <label>7. دولہا کا پتہ:</label>
-  <input name="دولہا کا پتہ" />
+  <label>7. دولہا کا پتہ</label>
+  <textarea name="dulha_address" rows="2" required></textarea>
 
-  <label>8. دلہے کا آدھار نمبر:</label>
-  <input name="دلہے کا آدھار نمبر" required />
+  <label>8. دلہے کا آدھار نمبر</label>
+  <input name="dulha_aadhar" required>
 
-  <label>9. دولہے کا فون نمبر:</label>
-  <input name="دولہے کا فون نمبر" required />
+  <label>9. دولہے کا فون نمبر</label>
+  <input name="dulha_phone" required>
 
-  <label>10. دلہن کا نام:</label>
-  <input name="دلہن کا نام" required />
+  <label>10. دلہن کا نام</label>
+  <input name="dulhan_name" required>
 
-  <label>11. دلہن کے والد کا نام:</label>
-  <input name="دلہن کے والد کا نام" required />
+  <label>11. دلہن کے والد کا نام</label>
+  <input name="dulhan_father" required>
 
-  <label>12. دلہن کی عمر:</label>
-  <input name="دلہن کی عمر" required />
+  <label>12. دلہن کی عمر</label>
+  <input name="dulhan_age" required>
 
-  <label>13. دلہن کا پیشہ:</label>
-  <input name="دلہن کا پیشہ" />
+  <label>13. دلہن کا پیشہ</label>
+  <input name="dulhan_job" required>
 
-  <label>14. دلہن کا پتہ:</label>
-  <input name="دلہن کا پتہ" />
+  <label>14. دلہن کا پتہ</label>
+  <textarea name="dulhan_address" rows="2" required></textarea>
 
-  <label>15. دلہن کا آدھار نمبر:</label>
-  <input name="دلہن کا آدھار نمبر" required />
+  <label>15. دلہن کا آدھار نمبر</label>
+  <input name="dulhan_aadhar" required>
 
-  <label>16. وکیل کا نام:</label>
-  <input name="وکیل کا نام" />
+  <label>16. وکیل کا نام</label>
+  <input name="wakeel_name" required>
 
-  <label>17. وکیل کے والد کا نام:</label>
-  <input name="وکیل کے والد کا نام" />
+  <label>17. وکیل کے والد کا نام</label>
+  <input name="wakeel_father" required>
 
-  <label>18. گواہ اول کا نام:</label>
-  <input name="گواہ اول کا نام" required />
+  <label>18. گواہ اول کا نام</label>
+  <input name="gawah1_name" required>
 
-  <label>19. گواہ اول کے والد کا نام:</label>
-  <input name="گواہ اول کے والد کا نام" required />
+  <label>19. گواہ اول کے والد کا نام</label>
+  <input name="gawah1_father" required>
 
-  <label>20. گواہ دوم کا نام:</label>
-  <input name="گواہ دوم کا نام" required />
+  <label>20. گواہ دوم کا نام</label>
+  <input name="gawah2_name" required>
 
-  <label>21. گواہ دوم کے والد کا نام:</label>
-  <input name="گواہ دوم کے والد کا نام" required />
+  <label>21. گواہ دوم کے والد کا نام</label>
+  <input name="gawah2_father" required>
 
-  <label>22. مہر کی رقم:</label>
-  <input name="مہر کی رقم" required />
+  <label>22. مہر کی رقم</label>
+  <input name="mehr_amount" required>
 
-  <label>23. قاری النکاح کا نام:</label>
-  <input name="قاری النکاح کا نام" required />
+  <label>23. قاری النکاح کا نام</label>
+  <input name="qari_name" required>
 
-  <button type="submit">فارم جمع کریں</button>
+  <button type="submit">📥 فارم جمع کریں</button>
 </form>
 
+<div class="message" id="thankYou">✅ شکریہ! فارم کامیابی سے جمع ہو گیا۔</div>
+
 <script>
-  document.getElementById('nikahForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-
-    fetch('https://script.google.com/macros/s/AKfycbzI854mXWFSKEfwmbV5SpTf8Xj5Xdhykb1yViGQY-IoMSsnNN_gtkjbMaDBz-wdztFI/exec', {
-      method: 'POST',
-      body: data
-    }).then(response => {
-      alert('الحمدللہ! فارم کامیابی سے جمع ہو گیا ہے۔');
-      form.reset();
-    }).catch(error => {
-      alert('فارم جمع کرنے میں خرابی ہوئی، دوبارہ کوشش کریں۔');
-      console.error(error);
-    });
-  });
-</script>
-
-</body>
-</html>
+  const form = document.getElementById('nikahForm');
+  const thankYou = document.getElementById('thankYou');
