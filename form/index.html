@@ -1,50 +1,51 @@
-<!DOCTYPE html><html lang="ur" dir="rtl">
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>نکاح فارم اندراج</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css" rel="stylesheet" />
   <style>
     body {
       font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #f9f9f9;
-      margin: 0;
+      background-color: #f4f4f4;
       padding: 20px;
-      direction: rtl;
-      text-align: right;
+      color: #222;
     }
-    h1 {
+    h2 {
       text-align: center;
+      margin-bottom: 20px;
       color: #064663;
     }
     form {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
+      background: white;
       padding: 30px;
-      border-radius: 8px;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     label {
       display: block;
-      margin-top: 15px;
-      font-weight: bold;
+      margin-top: 12px;
+      font-size: 1.2rem;
     }
-    input, textarea {
+    input, select {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
+      font-size: 1rem;
       margin-top: 5px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      font-family: inherit;
     }
     button {
       margin-top: 20px;
       background-color: #0a9396;
       color: white;
+      padding: 12px 20px;
       border: none;
-      padding: 12px 24px;
       border-radius: 6px;
-      font-size: 1rem;
+      font-size: 1.1rem;
       cursor: pointer;
     }
     button:hover {
@@ -53,81 +54,100 @@
   </style>
 </head>
 <body>
-  <h1>نکاح فارم اندراج</h1>
-  <form id="nikahForm">
-    <label for="location">جائے نکاح:</label>
-    <input type="text" id="location" name="location" required><label for="date">نکاح کی تاریخ:</label>
-<input type="date" id="date" name="date" required>
 
-<label for="groomName">دولہا کا نام:</label>
-<input type="text" id="groomName" name="groomName" required>
+<h2>نکاح فارم اندراج - محکمہ عالیہ شریعہ دارالقضاء مدگل</h2>
 
-<label for="groomFather">دولہے کے والد کا نام:</label>
-<input type="text" id="groomFather" name="groomFather" required>
+<form id="nikahForm">
+  <label>1. جائے نکاح:</label>
+  <input name="جائے نکاح" required />
 
-<label for="groomAge">دولہے کی عمر:</label>
-<input type="number" id="groomAge" name="groomAge" required>
+  <label>2. نکاح کی تاریخ:</label>
+  <input type="date" name="نکاح کی تاریخ" required />
 
-<label for="groomJob">دولہا کا پیشہ:</label>
-<input type="text" id="groomJob" name="groomJob" required>
+  <label>3. دولہا کا نام:</label>
+  <input name="دولہا کا نام" required />
 
-<label for="groomAddress">دولہا کا پتہ:</label>
-<input type="text" id="groomAddress" name="groomAddress" required>
+  <label>4. دولہے کے والد کا نام:</label>
+  <input name="دولہے کے والد کا نام" required />
 
-<label for="groomPhone">دولہے کا فون نمبر:</label>
-<input type="tel" id="groomPhone" name="groomPhone" required>
+  <label>5. دلہے کی عمر:</label>
+  <input name="دلہے کی عمر" required />
 
-<label for="brideName">دلہن کا نام:</label>
-<input type="text" id="brideName" name="brideName" required>
+  <label>6. دولہا کا پیشہ:</label>
+  <input name="دولہا کا پیشہ" />
 
-<label for="brideFather">دلہن کے والد کا نام:</label>
-<input type="text" id="brideFather" name="brideFather" required>
+  <label>7. دولہا کا پتہ:</label>
+  <input name="دولہا کا پتہ" />
 
-<label for="brideAge">دلہن کی عمر:</label>
-<input type="number" id="brideAge" name="brideAge" required>
+  <label>8. دلہے کا آدھار نمبر:</label>
+  <input name="دلہے کا آدھار نمبر" required />
 
-<label for="brideJob">دلہن کا پیشہ:</label>
-<input type="text" id="brideJob" name="brideJob" required>
+  <label>9. دولہے کا فون نمبر:</label>
+  <input name="دولہے کا فون نمبر" required />
 
-<label for="brideAddress">دلہن کا پتہ:</label>
-<input type="text" id="brideAddress" name="brideAddress" required>
+  <label>10. دلہن کا نام:</label>
+  <input name="دلہن کا نام" required />
 
-<label for="mehr">مہر کی رقم:</label>
-<input type="text" id="mehr" name="mehr" required>
+  <label>11. دلہن کے والد کا نام:</label>
+  <input name="دلہن کے والد کا نام" required />
 
-<label for="vakilName">وکیل کا نام:</label>
-<input type="text" id="vakilName" name="vakilName" required>
+  <label>12. دلہن کی عمر:</label>
+  <input name="دلہن کی عمر" required />
 
-<label for="vakilFather">وکیل کے والد کا نام:</label>
-<input type="text" id="vakilFather" name="vakilFather" required>
+  <label>13. دلہن کا پیشہ:</label>
+  <input name="دلہن کا پیشہ" />
 
-<label for="witness1">گواہ اول کا نام:</label>
-<input type="text" id="witness1" name="witness1" required>
+  <label>14. دلہن کا پتہ:</label>
+  <input name="دلہن کا پتہ" />
 
-<label for="witness1Father">گواہ اول کے والد کا نام:</label>
-<input type="text" id="witness1Father" name="witness1Father" required>
+  <label>15. دلہن کا آدھار نمبر:</label>
+  <input name="دلہن کا آدھار نمبر" required />
 
-<label for="witness2">گواہ دوم کا نام:</label>
-<input type="text" id="witness2" name="witness2" required>
+  <label>16. وکیل کا نام:</label>
+  <input name="وکیل کا نام" />
 
-<label for="witness2Father">گواہ دوم کے والد کا نام:</label>
-<input type="text" id="witness2Father" name="witness2Father" required>
+  <label>17. وکیل کے والد کا نام:</label>
+  <input name="وکیل کے والد کا نام" />
 
-<label for="qazi">قاری النکاح کا نام:</label>
-<input type="text" id="qazi" name="qazi" required>
+  <label>18. گواہ اول کا نام:</label>
+  <input name="گواہ اول کا نام" required />
 
-<button type="submit">فارم جمع کریں</button>
+  <label>19. گواہ اول کے والد کا نام:</label>
+  <input name="گواہ اول کے والد کا نام" required />
 
-  </form>  <script>
-    document.getElementById("nikahForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      fetch("https://script.google.com/macros/s/AKfycbzl854mXWFSKEfwmbV5SpTf8Xj5Xdhykb1yViGQY-loMSsnNN_gtkjbMaDBz-wdztFI/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(response => alert("فارم کامیابی سے جمع ہو گیا!"))
-      .catch(error => alert("کچھ خرابی ہوئی، دوبارہ کوشش کریں."));
+  <label>20. گواہ دوم کا نام:</label>
+  <input name="گواہ دوم کا نام" required />
+
+  <label>21. گواہ دوم کے والد کا نام:</label>
+  <input name="گواہ دوم کے والد کا نام" required />
+
+  <label>22. مہر کی رقم:</label>
+  <input name="مہر کی رقم" required />
+
+  <label>23. قاری النکاح کا نام:</label>
+  <input name="قاری النکاح کا نام" required />
+
+  <button type="submit">فارم جمع کریں</button>
+</form>
+
+<script>
+  document.getElementById('nikahForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+
+    fetch('https://script.google.com/macros/s/AKfycbzI854mXWFSKEfwmbV5SpTf8Xj5Xdhykb1yViGQY-IoMSsnNN_gtkjbMaDBz-wdztFI/exec', {
+      method: 'POST',
+      body: data
+    }).then(response => {
+      alert('الحمدللہ! فارم کامیابی سے جمع ہو گیا ہے۔');
+      form.reset();
+    }).catch(error => {
+      alert('فارم جمع کرنے میں خرابی ہوئی، دوبارہ کوشش کریں۔');
+      console.error(error);
     });
-  </script></body>
+  });
+</script>
+
+</body>
 </html>
