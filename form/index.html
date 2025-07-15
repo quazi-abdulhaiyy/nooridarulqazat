@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نکاح فارم</title>
+  <style>
+    body {
+      font-family: Noto Nastaliq Urdu, serif;
+      background-color: #f9f9f9;
+      padding: 2rem;
+      direction: rtl;
+    }
+    h1 {
+      text-align: center;
+      color: #005c99;
+    }
+    form {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.2rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 2rem;
+      padding: 0.7rem 1.5rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>نکاح نامہ اندراج - دارالقضاء مدگل</h1>
+  <form id="nikahForm">
+    <label>جائے نکاح: <input name="place" required></label>
+    <label>نکاح کی تاریخ: <input type="date" name="date" required></label>
+    <label>دولہا کا نام: <input name="groom_name" required></label>
+    <label>دولہے کے والد کا نام: <input name="groom_father" required></label>
+    <label>دولہا کی عمر: <input name="groom_age" required></label>
+    <label>دولہا کا پیشہ: <input name="groom_job" required></label>
+    <label>دولہا کا پتہ: <input name="groom_address" required></label>
+    <label>دلہن کا نام: <input name="bride_name" required></label>
+    <label>دلہن کے والد کا نام: <input name="bride_father" required></label>
+    <label>دلہن کی عمر: <input name="bride_age" required></label>
+    <label>دلہن کا پیشہ: <input name="bride_job" required></label>
+    <label>دلہن کا پتہ: <input name="bride_address" required></label>
+    <label>مہر کی رقم: <input name="mehr" required></label>
+    <label>وکیل کا نام: <input name="wakeel_name" required></label>
+    <label>وکیل کے والد کا نام: <input name="wakeel_father" required></label>
+    <label>گواہ اول کا نام: <input name="witness1" required></label>
+    <label>گواہ اول کے والد کا نام: <input name="witness1_father" required></label>
+    <label>گواہ دوم کا نام: <input name="witness2" required></label>
+    <label>گواہ دوم کے والد کا نام: <input name="witness2_father" required></label>
+    <label>قاری النکاح کا نام: <input name="qaari" required></label>
+    <button type="submit">محفوظ کریں</button>
+  </form>
+
+  <script>
+    document.getElementById("nikahForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((value, key) => { data[key] = value; });
+
+      fetch("https://script.google.com/macros/s/AKfycbzl854mXWFSKEfwmbV5SpTf8Xj5Xdhykb1yViGQY-loMSsnNN_gtkjbMaDBz-wdztFI/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.text())
+      .then(res => alert("نکاح فارم کامیابی سے محفوظ ہو گیا!"))
+      .catch(err => alert("خرابی: " + err));
+    });
+  </script>
+</body>
+</html>
