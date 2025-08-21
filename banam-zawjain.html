@@ -6,72 +6,248 @@
   <title>بنامِ زوجین | دارالقضاء مدگل</title>
   <link href="https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css" rel="stylesheet" />
   <style>
-    body {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #fefdf9;
-      color: #3b3a30;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    .container {
-      max-width: 700px;
-      margin: 40px auto;
-      background-color: #e0f7fa;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      background: linear-gradient(135deg, #f8f5e6 0%, #e6dfc2 100%);
+      color: #3b3a30;
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+    
+    .container {
+      max-width: 750px;
+      width: 100%;
+      background: linear-gradient(to bottom, #ffffff, #f5fbff);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      border: 2px solid #0a9396;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(to right, #0a9396, #94d2bd, #0a9396);
+    }
+    
     h2 {
       text-align: center;
       color: #053f5e;
       margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #94d2bd;
+      font-size: 28px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
     label {
       display: block;
-      margin-bottom: 15px;
+      margin-bottom: 8px;
+      color: #005f73;
+      font-weight: bold;
+      font-size: 16px;
     }
+    
     input {
       width: 100%;
-      padding: 8px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      padding: 12px 15px;
+      font-size: 16px;
+      border: 2px solid #94d2bd;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      transition: all 0.3s ease;
+      font-family: 'Noto Nastaliq Urdu', serif;
     }
+    
+    input:focus {
+      outline: none;
+      border-color: #0a9396;
+      box-shadow: 0 0 0 3px rgba(10, 147, 150, 0.2);
+      background-color: #ffffff;
+    }
+    
     button {
-      background-color: #0a9396;
+      background: linear-gradient(to right, #0a9396, #005f73);
       color: white;
-      font-size: 1.1rem;
+      font-size: 18px;
       font-weight: bold;
-      padding: 12px 24px;
+      padding: 15px 25px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       width: 100%;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-family: 'Noto Nastaliq Urdu', serif;
     }
+    
     button:hover {
-      background-color: #007f81;
+      background: linear-gradient(to right, #005f73, #0a9396);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    .header-decoration {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0a9396;
+      font-size: 24px;
+    }
+    
+    .footer-note {
+      text-align: center;
+      margin-top: 25px;
+      color: #6c757d;
+      font-size: 14px;
+      padding-top: 15px;
+      border-top: 1px solid #dee2e6;
+    }
+    
+    .form-section {
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed #94d2bd;
+    }
+    
+    .form-section-title {
+      color: #005f73;
+      margin-bottom: 15px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .form-section-title::after {
+      content: "";
+      flex-grow: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #94d2bd);
+      margin-right: 15px;
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <div class="header-decoration">﷽</div>
     <h2>بنامِ زوجین</h2>
+    
     <form id="zawjainForm">
-      <label>دولہا کا نام:<input type="text" id="groomName" required></label>
-      <label>دولہا کے والد کا نام:<input type="text" id="groomFather" required></label>
-      <label>دلہن کا نام:<input type="text" id="brideName" required></label>
-      <label>دلہن کے والد کا نام:<input type="text" id="brideFather" required></label>
-      <label>تاریخ نکاح:<input type="date" id="nikahDate" required></label>
-      <label>جائے نکاح:<input type="text" id="place" required></label>
-      <label>دولہا کا آدھار نمبر:<input type="text" id="groomAadhaar" required></label>
-      <label>دلہن کا آدھار نمبر:<input type="text" id="brideAadhaar" required></label>
-      <label>اینوِنٹر کا نام:<input type="text" id="inviterName" required></label>
-      <label>اینوِنٹر کا فون نمبر:<input type="tel" id="inviterPhone" required></label>
-      <label>قارئِ نکاح کا نام:<input type="text" id="qariName" required></label>
-      <label>قارئِ نکاح کا فون نمبر:<input type="tel" id="qariPhone" required></label>
+      <div class="form-section">
+        <div class="form-section-title">دولہا کی معلومات</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="groomName">دولہا کا نام:</label>
+            <input type="text" id="groomName" required>
+          </div>
+          <div class="form-group">
+            <label for="groomFather">دولہا کے والد کا نام:</label>
+            <input type="text" id="groomFather" required>
+          </div>
+          <div class="form-group">
+            <label for="groomAadhaar">دولہا کا آدھار نمبر:</label>
+            <input type="text" id="groomAadhaar" required>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <div class="form-section-title">دلہن کی معلومات</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="brideName">دلہن کا نام:</label>
+            <input type="text" id="brideName" required>
+          </div>
+          <div class="form-group">
+            <label for="brideFather">دلہن کے والد کا نام:</label>
+            <input type="text" id="brideFather" required>
+          </div>
+          <div class="form-group">
+            <label for="brideAadhaar">دلہن کا آدھار نمبر:</label>
+            <input type="text" id="brideAadhaar" required>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <div class="form-section-title">نکاح کی تفصیلات</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nikahDate">تاریخ نکاح:</label>
+            <input type="date" id="nikahDate" required>
+          </div>
+          <div class="form-group">
+            <label for="place">جائے نکاح:</label>
+            <input type="text" id="place" required>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <div class="form-section-title">دیگر معلومات</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="inviterName">اینوِنٹر کا نام:</label>
+            <input type="text" id="inviterName" required>
+          </div>
+          <div class="form-group">
+            <label for="inviterPhone">اینوِنٹر کا فون نمبر:</label>
+            <input type="tel" id="inviterPhone" required>
+          </div>
+          <div class="form-group">
+            <label for="qariName">قارئِ نکاح کا نام:</label>
+            <input type="text" id="qariName" required>
+          </div>
+          <div class="form-group">
+            <label for="qariPhone">قارئِ نکاح کا فون نمبر:</label>
+            <input type="tel" id="qariPhone" required>
+          </div>
+        </div>
+      </div>
+      
       <button type="button" onclick="generatePDF()">📄 PDF تیار کریں</button>
     </form>
+    
+    <div class="footer-note">
+      دارالقضاء مدگل - شرعی نکاح کی سند
+    </div>
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     function formatDate(dateStr) {
