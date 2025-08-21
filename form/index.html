@@ -3,146 +3,323 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نکاح فارم اندراج - نوری دارالقضاءت</title>
+  <title>نکاح فارم اندراج - نوری دارالقضاء</title>
   <style>
     @import url('https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css');
     body {
       font-family: 'Noto Nastaliq Urdu', serif;
-      background-color: #f8f9fa;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       margin: 0;
       padding: 20px;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: linear-gradient(135deg, #064663 0%, #04293A 100%);
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     h2 {
-      text-align: center;
-      color: #064663;
-      margin-bottom: 30px;
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: bold;
     }
-    form {
-      max-width: 800px;
-      margin: auto;
+    .form-container {
       background: #ffffff;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
     }
     label {
       display: block;
       margin-top: 15px;
       font-size: 1.1rem;
-      color: #333;
+      color: #064663;
+      font-weight: bold;
     }
     input, select, textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
       margin-top: 5px;
+      transition: all 0.3s ease;
+      font-family: 'Noto Nastaliq Urdu', serif;
     }
-    input[type="submit"] {
-      background-color: #0a9396;
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #0a9396;
+      box-shadow: 0 0 0 3px rgba(10, 147, 150, 0.2);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .form-section {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px dashed #e9ecef;
+    }
+    .form-section-title {
+      font-size: 1.4rem;
+      color: #064663;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #0a9396;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+    button {
+      background: linear-gradient(135deg, #0a9396 0%, #068488 100%);
       color: white;
       border: none;
-      margin-top: 25px;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border-radius: 50px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      font-family: 'Noto Nastaliq Urdu', serif;
+      box-shadow: 0 4px 10px rgba(10, 147, 150, 0.3);
     }
-    input[type="submit"]:hover {
-      background-color: #007f81;
+    button:hover {
+      background: linear-gradient(135deg, #068488 0%, #05696d 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(10, 147, 150, 0.4);
+    }
+    button:active {
+      transform: translateY(0);
     }
     .success {
       text-align: center;
-      color: green;
+      color: #0a9396;
       margin-top: 20px;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      padding: 15px;
+      background-color: #e8f5f5;
+      border-radius: 8px;
+      display: none;
+    }
+    .error {
+      text-align: center;
+      color: #dc3545;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      padding: 15px;
+      background-color: #f8d7da;
+      border-radius: 8px;
+      display: none;
+    }
+    .loading {
+      text-align: center;
+      color: #064663;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      padding: 15px;
+      background-color: #e9ecef;
+      border-radius: 8px;
+      display: none;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      color: #6c757d;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <h2>🔹 نکاح فارم اندراج 🔹</h2>
-  <form id="nikahForm">
-    <label>1. جائے نکاح</label>
-    <input type="text" name="جائے نکاح" required>
+  <div class="container">
+    <header>
+      <h2>نکاح فارم اندراج - نوری دارالقضاء</h2>
+    </header>
 
-    <label>2. نکاح کی تاریخ</label>
-    <input type="date" name="نکاح کی تاریخ" required>
+    <div class="form-container">
+      <form id="nikahForm">
+        <div class="form-section">
+          <div class="form-section-title">نکاح کی بنیادی معلومات</div>
+          <div class="form-grid">
+            <div>
+              <label>1. جائے نکاح</label>
+              <input type="text" name="جائے نکاح" required>
+            </div>
+            <div>
+              <label>2. نکاح کی تاریخ</label>
+              <input type="date" name="نکاح کی تاریخ" required>
+            </div>
+          </div>
+        </div>
 
-    <label>3. دولہا کا نام</label>
-    <input type="text" name="دولہا کا نام" required>
+        <div class="form-section">
+          <div class="form-section-title">دولہا کی معلومات</div>
+          <div class="form-grid">
+            <div>
+              <label>3. دولہا کا نام</label>
+              <input type="text" name="دولہا کا نام" required>
+            </div>
+            <div>
+              <label>4. دولہے کے والد کا نام</label>
+              <input type="text" name="دولہے کے والد کا نام" required>
+            </div>
+            <div>
+              <label>5. دلہے کی عمر</label>
+              <input type="number" name="دلہے کی عمر" required min="18">
+            </div>
+            <div>
+              <label>6. دولہا کا پیشہ</label>
+              <input type="text" name="دولہا کا پیشہ" required>
+            </div>
+            <div>
+              <label>7. دولہا کا پتہ</label>
+              <textarea name="دولہا کا پتہ" rows="2" required></textarea>
+            </div>
+            <div>
+              <label>8. دلہے کا آدھار نمبر</label>
+              <input type="text" name="دلہے کا آدھار نمبر" required pattern="[0-9]{12}" title="12 ہندسوں میں آدھار نمبر درج کریں">
+            </div>
+            <div>
+              <label>9. دولہے کا فون نمبر</label>
+              <input type="tel" name="دولہے کا فون نمبر" required pattern="[0-9]{10}" title="10 ہندسوں میں فون نمبر درج کریں">
+            </div>
+          </div>
+        </div>
 
-    <label>4. دولہے کے والد کا نام</label>
-    <input type="text" name="دولہے کے والد کا نام" required>
+        <div class="form-section">
+          <div class="form-section-title">دلہن کی معلومات</div>
+          <div class="form-grid">
+            <div>
+              <label>10. دلہن کا نام</label>
+              <input type="text" name="دلہن کا نام" required>
+            </div>
+            <div>
+              <label>11. دلہن کے والد کا نام</label>
+              <input type="text" name="دلہن کے والد کا نام" required>
+            </div>
+            <div>
+              <label>12. دلہن کی عمر</label>
+              <input type="number" name="دلہن کی عمر" required min="16">
+            </div>
+            <div>
+              <label>13. دلہن کا پیشہ</label>
+              <input type="text" name="دلہن کا پیشہ" required>
+            </div>
+            <div>
+              <label>14. دلہن کا پتہ</label>
+              <textarea name="دلہن کا پتہ" rows="2" required></textarea>
+            </div>
+            <div>
+              <label>15. دلہن کا آدھار نمبر</label>
+              <input type="text" name="دلہن کا آدھار نمبر" required pattern="[0-9]{12}" title="12 ہندسوں میں آدھار نمبر درج کریں">
+            </div>
+          </div>
+        </div>
 
-    <label>5. دلہے کی عمر</label>
-    <input type="number" name="دلہے کی عمر" required>
+        <div class="form-section">
+          <div class="form-section-title">دیگر معلومات</div>
+          <div class="form-grid">
+            <div>
+              <label>16. وکیل کا نام</label>
+              <input type="text" name="وکیل کا نام" required>
+            </div>
+            <div>
+              <label>17. وکیل کے والد کا نام</label>
+              <input type="text" name="وکیل کے والد کا نام" required>
+            </div>
+            <div>
+              <label>18. گواہ اول کا نام</label>
+              <input type="text" name="گواہ اول کا نام" required>
+            </div>
+            <div>
+              <label>19. گواہ اول کے والد کا نام</label>
+              <input type="text" name="گواہ اول کے والد کا نام" required>
+            </div>
+            <div>
+              <label>20. گواہ دوم کا نام</label>
+              <input type="text" name="گواہ دوم کا نام" required>
+            </div>
+            <div>
+              <label>21. گواہ دوم کے والد کا نام</label>
+              <input type="text" name="گواہ دوم کے والد کا نام" required>
+            </div>
+            <div>
+              <label>22. مہر کی رقم</label>
+              <input type="text" name="مہر کی رقم" required>
+            </div>
+            <div>
+              <label>23. قاری النکاح کا نام</label>
+              <input type="text" name="قاری النکاح کا نام" required>
+            </div>
+          </div>
+        </div>
 
-    <label>6. دولہا کا پیشہ</label>
-    <input type="text" name="دولہا کا پیشہ" required>
+        <div class="btn-container">
+          <button type="submit">📥 فارم جمع کریں</button>
+        </div>
+      </form>
 
-    <label>7. دولہا کا پتہ</label>
-    <textarea name="دولہا کا پتہ" rows="2" required></textarea>
+      <div class="loading" id="loadingMsg">
+        ⏳ فارم جمع کیا جا رہا ہے، براہ کرم انتظار کریں...
+      </div>
 
-    <label>8. دلہے کا آدھار نمبر</label>
-    <input type="text" name="دلہے کا آدھار نمبر" required>
+      <div class="success" id="successMsg">
+        ✅ فارم کامیابی سے جمع ہو چکا ہے۔ شکریہ!
+      </div>
 
-    <label>9. دولہے کا فون نمبر</label>
-    <input type="tel" name="دولہے کا فون نمبر" required>
+      <div class="error" id="errorMsg">
+        ❌ فارم جمع کرنے میں خرابی ہوئی: دوبارہ کوشش کریں
+      </div>
 
-    <label>10. دلہن کا نام</label>
-    <input type="text" name="دلہن کا نام" required>
+      <div class="error" id="serverErrorMsg">
+        ⚠️ سرور سے رابطہ نہ ہو سکا۔ براہ کرم انٹرنیٹ کنکشن چیک کریں
+      </div>
+    </div>
 
-    <label>11. دلہن کے والد کا نام</label>
-    <input type="text" name="دلہن کے والد کا نام" required>
-
-    <label>12. دلہن کی عمر</label>
-    <input type="number" name="دلہن کی عمر" required>
-
-    <label>13. دلہن کا پیشہ</label>
-    <input type="text" name="دلہن کا پیشہ" required>
-
-    <label>14. دلہن کا پتہ</label>
-    <textarea name="دلہن کا پتہ" rows="2" required></textarea>
-
-    <label>15. دلہن کا آدھار نمبر</label>
-    <input type="text" name="دلہن کا آدھار نمبر" required>
-
-    <label>16. وکیل کا نام</label>
-    <input type="text" name="وکیل کا نام" required>
-
-    <label>17. وکیل کے والد کا نام</label>
-    <input type="text" name="وکیل کے والد کا نام" required>
-
-    <label>18. گواہ اول کا نام</label>
-    <input type="text" name="گواہ اول کا نام" required>
-
-    <label>19. گواہ اول کے والد کا نام</label>
-    <input type="text" name="گواہ اول کے والد کا نام" required>
-
-    <label>20. گواہ دوم کا نام</label>
-    <input type="text" name="گواہ دوم کا نام" required>
-
-    <label>21. گواہ دوم کے والد کا نام</label>
-    <input type="text" name="گواہ دوم کے والد کا نام" required>
-
-    <label>22. مہر کی رقم</label>
-    <input type="text" name="مہر کی رقم" required>
-
-    <label>23. قاری النکاح کا نام</label>
-    <input type="text" name="قاری النکاح کا نام" required>
-
-    <input type="submit" value="📥 فارم جمع کریں">
-  </form>
-
-  <div class="success" id="successMsg" style="display:none;">
-    ✅ فارم کامیابی سے جمع ہو چکا ہے۔ شکریہ!
+    <footer>
+      <p>نوری دارالقضاء © 2023۔ تمام حقوق محفوظ ہیں</p>
+    </footer>
   </div>
 
   <script>
     const form = document.getElementById('nikahForm');
     const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+    const serverErrorMsg = document.getElementById('serverErrorMsg');
+    const loadingMsg = document.getElementById('loadingMsg');
+
+    // تمام پیغامات چھپانے کی فنکشن
+    function hideAllMessages() {
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+      serverErrorMsg.style.display = 'none';
+      loadingMsg.style.display = 'none';
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      hideAllMessages();
+      loadingMsg.style.display = 'block';
+      
       const formData = new FormData(form);
       const data = {};
       formData.forEach((value, key) => {
@@ -150,25 +327,40 @@
       });
 
       // Google Apps Script Web App URL
-      fetch("https://script.google.com/macros/s/AKfycbxVjjxCVTfC53PMMGx_6Yh9MQCRfDl93E0Obn24iuD27UZ9nshbbs6xgVV0EdUvSFee/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
-      })
-      .then(res => res.json())
-      .then(response => {
-        console.log(response);
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwNhroGnOdJ0oUuk20Lb3SuGop2iycJKLoG9xZ448YePP3PzgkF-jOhjR69GYJG9rtr/exec';
+      
+      // JSONP کے ذریعے ڈیٹا بھیجنے کا طریقہ
+      const jsonpScript = document.createElement('script');
+      const callbackName = 'callback_' + new Date().getTime();
+      
+      // گلوبل callback فنکشن
+      window[callbackName] = function(response) {
+        // صفائی
+        document.head.removeChild(jsonpScript);
+        delete window[callbackName];
+        
+        loadingMsg.style.display = 'none';
+        
         if (response.result === "success") {
           form.reset();
           successMsg.style.display = "block";
         } else {
-          alert("❌ فارم جمع کرنے میں خرابی ہوئی: دوبارہ کوشش کریں");
+          errorMsg.style.display = "block";
         }
-      })
-      .catch(err => {
-        console.error(err);
-        alert("⚠️ سرور سے رابطہ نہ ہو سکا");
-      });
+      };
+      
+      // JSONP درخواست تیار کریں
+      const jsonpURL = scriptURL + '?callback=' + callbackName + '&data=' + encodeURIComponent(JSON.stringify(data));
+      jsonpScript.src = jsonpURL;
+      document.head.appendChild(jsonpScript);
+      
+      // اگر 10 سیکنڈ میں جواب نہ آئے تو timeout error دکھائیں
+      setTimeout(function() {
+        if (loadingMsg.style.display === 'block') {
+          loadingMsg.style.display = 'none';
+          serverErrorMsg.style.display = 'block';
+        }
+      }, 10000);
     });
   </script>
 </body>
