@@ -160,6 +160,29 @@
       background: linear-gradient(to right, transparent, #94d2bd);
       margin-right: 15px;
     }
+    
+    .pdf-preview {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px dashed #0a9396;
+    }
+    
+    .pdf-preview h3 {
+      color: #005f73;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .preview-content {
+      background: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+      height: 200px;
+      overflow-y: auto;
+    }
   </style>
 </head>
 <body>
@@ -243,6 +266,13 @@
       <button type="button" onclick="generatePDF()">📄 PDF تیار کریں</button>
     </form>
     
+    <div class="pdf-preview">
+      <h3>PDF کا پیش نظارہ</h3>
+      <div class="preview-content" id="pdfPreview">
+        PDF بنانے کے لیے فارم پُر کریں اور "PDF تیار کریں" بٹن دبائیں۔
+      </div>
+    </div>
+    
     <div class="footer-note">
       دارالقضاء مدگل - شرعی نکاح کی سند
     </div>
@@ -258,41 +288,99 @@
       return `${day}-${month}-${year}`;
     }
 
+    function updatePreview() {
+      const groomName = document.getElementById('groomName').value || '______';
+      const brideName = document.getElementById('brideName').value || '______';
+      const nikahDate = document.getElementById('nikahDate').value ? formatDate(document.getElementById('nikahDate').value) : '______';
+      
+      document.getElementById('pdfPreview').innerHTML = `
+        <p><strong>دولہا:</strong> ${groomName}</p>
+        <p><strong>دلہن:</strong> ${brideName}</p>
+        <p><strong>تاریخ نکاح:</strong> ${nikahDate}</p>
+        <p>یہ ایک شرعی نکاح نامہ ہے جو دارالقضاء مدگل کی جانب سے جاری کیا گیا ہے۔</p>
+        <p>دستخط اور مہر کے ساتھ مکمل دستاویز PDF میں دستیاب ہوگی۔</p>
+      `;
+    }
+
+    // تمام ان پٹ فیلڈز کے لیے پیش نظارہ اپڈیٹ کریں
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', updatePreview);
+    });
+
     async function generatePDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
 
-      doc.setFont("calibri", "bold");
-      doc.setFontSize(16);
-      doc.setTextColor(40, 90, 130);
-      doc.text("OFFICE OF THE QUAZAAT", 105, 20, { align: "center" });
-      doc.text("Androon Qila Mudgal. 584125 Tq. Lingsugur Dist. Raichur, Karnataka", 105, 28, { align: "center" });
-      doc.text("CHIEF QUAZI: MAULANA QUAZI ZAMEER AHMAD AZHARI", 105, 36, { align: "center" });
-      doc.text("Cell No. 9916922473", 105, 44, { align: "center" });
+      // خوبصورت ہیڈر ڈیزائن
+      doc.setFillColor(10, 147, 150);
+      doc.rect(0, 0, 220, 50, 'F');
+      
+      // خوبصورت بورڈر
+      doc.setDrawColor(5, 63, 94);
+      doc.setLineWidth(1);
+      doc.rect(5, 5, 210, 40);
+      
+      // مرکزی متن
+      doc.setFontSize(20);
+      doc.setTextColor(255, 255, 255);
+      doc.setFont("helvetica", "bold");
+      doc.text("OFFICE OF THE QUAZAAT", 105, 15, { align: "center" });
+      
+      doc.setFontSize(12);
+      doc.text("Androon Qila Mudgal. 584125 Tq. Lingsugur Dist. Raichur, Karnataka", 105, 25, { align: "center" });
+      
+      doc.setFontSize(14);
+      doc.text("CHIEF QUAZI: MAULANA QUAZI ZAMEER AHMAD AZHARI", 105, 35, { align: "center" });
+      
+      doc.setFontSize(12);
+      doc.text("Cell No. 9916922473", 105, 42, { align: "center" });
 
-      const data = {
-        'Groom Name': document.getElementById('groomName').value,
-        "Groom's Father": document.getElementById('groomFather').value,
-        'Bride Name': document.getElementById('brideName').value,
-        "Bride's Father": document.getElementById('brideFather').value,
-        'Nikah Date': formatDate(document.getElementById('nikahDate').value),
-        'Place of Nikah': document.getElementById('place').value,
-        'Groom Aadhaar': document.getElementById('groomAadhaar').value,
-        'Bride Aadhaar': document.getElementById('brideAadhaar').value,
-        'Inviter Name': document.getElementById('inviterName').value,
-        'Inviter Phone': document.getElementById('inviterPhone').value,
-        'Qari Name': document.getElementById('qariName').value,
-        'Qari Phone': document.getElementById('qariPhone').value
-      };
-
+      // معلومات کا جدول
+      const data = [
+        ['Groom Name:', document.getElementById('groomName').value],
+        ["Groom's Father:", document.getElementById('groomFather').value],
+        ['Bride Name:', document.getElementById('brideName').value],
+        ["Bride's Father:", document.getElementById('brideFather').value],
+        ['Nikah Date:', formatDate(document.getElementById('nikahDate').value)],
+        ['Place of Nikah:', document.getElementById('place').value],
+        ['Groom Aadhaar:', document.getElementById('groomAadhaar').value],
+        ['Bride Aadhaar:', document.getElementById('brideAadhaar').value],
+        ['Inviter Name:', document.getElementById('inviterName').value],
+        ['Inviter Phone:', document.getElementById('inviterPhone').value],
+        ['Qari Name:', document.getElementById('qariName').value],
+        ['Qari Phone:', document.getElementById('qariPhone').value]
+      ];
+      
       doc.setFont("helvetica", "normal");
       doc.setTextColor(0, 0, 0);
       doc.setFontSize(12);
-      let y = 60;
-      for (const key in data) {
-        doc.text(`${key}: ${data[key]}`, 20, y);
+      
+      // جدول کے لیے ہلکا پس منظر
+      doc.setFillColor(245, 249, 255);
+      doc.rect(10, 55, 200, 130, 'F');
+      
+      // جدول کی لکیریں
+      doc.setDrawColor(200, 200, 200);
+      doc.setLineWidth(0.2);
+      for(let i = 0; i <= 12; i++) {
+        doc.line(10, 55 + i*10, 210, 55 + i*10);
+      }
+      doc.line(80, 55, 80, 185);
+      
+      let y = 62;
+      for (const row of data) {
+        doc.setFont("helvetica", "bold");
+        doc.text(row[0], 15, y);
+        doc.setFont("helvetica", "normal");
+        doc.text(row[1], 85, y);
         y += 10;
       }
+      
+      // فوٹر
+      doc.setFontSize(10);
+      doc.setTextColor(100, 100, 100);
+      doc.text("یہ دستاویز دارالقضاء مدگل کی جانب سے جاری کی گئی ہے۔", 105, 200, { align: "center" });
+      doc.text("Chief Qazi: Maulana Qazi Zameer Ahmad Azhari - Cell: 9916922473", 105, 210, { align: "center" });
 
       doc.save('banam-zawjain.pdf');
     }
